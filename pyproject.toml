@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cross-ai-memory"
-version = "0.3.3"
+version = "0.3.4"
 description = "One shared notebook for every AI you use. Agents propose; you approve."
 readme = "README.md"
 license = { text = "MIT" }

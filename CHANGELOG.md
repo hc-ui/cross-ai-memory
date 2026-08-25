@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.4 - 2026-08-26
+
+- The public page fills `<VAULT>` from a path box, so the copied rule already has a folder.
+- Step 3 names the paste target: Cursor user rules, Claude `CLAUDE.md`, Codex `AGENTS.md`.
+
 ## 0.3.3 - 2026-08-26
 
 - Tonight on the public page is a folder plus MEMORY.md, not a CLI install.

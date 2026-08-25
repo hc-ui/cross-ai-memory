@@ -79,8 +79,8 @@ https://hc-ui.github.io/cross-ai-memory/
 ## 今晚三步
 
 1. 建一个本地文件夹，存入 [MEMORY.md](https://hc-ui.github.io/cross-ai-memory/MEMORY.md)。
-2. 复制上面那段规则，把 `<VAULT>` 换成这个文件夹。
-3. 贴进 Cursor / Claude / Codex。
+2. 在 [公开页](https://hc-ui.github.io/cross-ai-memory/) 填入路径，复制已经填好的规则。
+3. 同一段贴三处：Cursor 用户规则、Claude 的 `CLAUDE.md`、Codex 的 `AGENTS.md`。
 
 下次要落一条长期事实，说「记住」或「同意写入」。它应该先提案，你点头再写。单独一页：[docs/tonight.zh-CN.md](docs/tonight.zh-CN.md)
 

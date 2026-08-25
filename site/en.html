@@ -78,6 +78,16 @@
     .tonight b { display: block; margin-bottom: 4px; }
     .opt { color: var(--muted); font-size: 15px; font-family: ui-sans-serif, sans-serif; }
     .opt code { font-size: 13px; overflow-wrap: anywhere; }
+    .pathbox { display: grid; gap: 6px; margin: 8px 0 16px; }
+    .pathbox span { font-size: 13px; letter-spacing: .08em; color: var(--muted); font-family: ui-sans-serif, sans-serif; }
+    .pathbox input {
+      font: 16px/1.4 ui-monospace, Consolas, monospace;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+      color: var(--ink);
+      padding: 12px 14px;
+      width: 100%;
+    }
     footer { color: var(--muted); font-size: 14px; padding: 48px 0 36px; font-family: ui-sans-serif, sans-serif; }
   </style>
 </head>
@@ -108,7 +118,11 @@
 
     <h2 id="tonight">Steal it tonight</h2>
     <p>No install. Make a folder, then point every AI at it.</p>
-    <pre>my-memory/
+    <label class="pathbox">
+      <span>Your folder path</span>
+      <input id="vault" type="text" placeholder="D:/my-memory" spellcheck="false" autocomplete="off" inputmode="text">
+    </label>
+    <pre id="tree">my-memory/
   MEMORY.md</pre>
 
     <h3>1. Save this as MEMORY.md</h3>
@@ -122,10 +136,11 @@ There are no other notes yet. After the first durable fact is written, add a lin
 Do not write unless I say 记住 / approve write.</pre>
     <p class="row">
       <button type="button" id="copy-door">Copy MEMORY.md</button>
-      <a class="btn ghost" href="MEMORY.en.md">Download this file</a>
+      <a class="btn ghost" href="MEMORY.en.md" download="MEMORY.md">Download this file</a>
     </p>
 
-    <h3>2. Copy the rule, then replace &lt;VAULT&gt;</h3>
+    <h3>2. Fill the path, then copy the rule</h3>
+    <p>Type above and <code>&lt;VAULT&gt;</code> is replaced. Leave it blank to copy the placeholder and edit it yourself.</p>
     <pre id="rule">Long-term memory folder: &lt;VAULT&gt;
 Entry: &lt;VAULT&gt;/MEMORY.md
 Start at the entry. Then open only the notes the index names.
@@ -139,7 +154,24 @@ Never store tokens, passwords, or cookies.</pre>
       <a class="btn ghost" href="https://github.com/hc-ui/cross-ai-memory">Read the full method on GitHub</a>
     </p>
 
-    <h3>3. Paste it into every AI you use</h3>
+    <h3>3. Paste the same block into each product</h3>
+    <div class="week">
+      <article>
+        <div class="when">Cursor</div>
+        <h3>User rules</h3>
+        <p>Settings → Rules → User Rules. That applies to every project. A rule sitting in some other repo will not see this folder.</p>
+      </article>
+      <article>
+        <div class="when">Claude Code</div>
+        <h3>CLAUDE.md</h3>
+        <p>Put it in a <code>CLAUDE.md</code> that always loads, or in a skill you keep on.</p>
+      </article>
+      <article>
+        <div class="when">Codex</div>
+        <h3>AGENTS.md</h3>
+        <p>Put it in Codex <code>AGENTS.md</code>. The weekly scan reads the same notebook.</p>
+      </article>
+    </div>
     <p>When a durable fact should land, say 记住 or approve write. It should propose first.</p>
     <p class="opt">Want the empty shell or Lin Ke’s notebook later? <code>pip install git+https://github.com/hc-ui/cross-ai-memory.git</code>, then <code>aimem init ./my-memory</code> or <code>aimem init --demo ./look</code>.</p>
 
@@ -176,7 +208,7 @@ Never store tokens, passwords, or cookies.</pre>
         <div class="when">Wednesday · Claude</div>
         <h3>Read the same note</h3>
         <p>New chat. Other product. Starts at MEMORY.md. Does not ask again.</p>
-        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/MEMORY.md">MEMORY.md</a>
+        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/MEMORY.md">Lin Ke’s MEMORY.md</a>
       </article>
       <article>
         <div class="when">Sunday · Codex</div>
@@ -206,6 +238,21 @@ Never store tokens, passwords, or cookies.</pre>
         btn.textContent = ok;
       }).catch(function () { btn.textContent = "Select and copy"; });
     }
+    const ruleEl = document.getElementById("rule");
+    const treeEl = document.getElementById("tree");
+    const vaultEl = document.getElementById("vault");
+    const ruleTemplate = ruleEl.innerText;
+    function vaultPath() {
+      let raw = vaultEl.value.trim().replace(/^["']|["']$/g, "").replace(/\\/g, "/").replace(/\/+$/, "");
+      if (/\/MEMORY\.md$/i.test(raw)) raw = raw.replace(/\/MEMORY\.md$/i, "");
+      return raw;
+    }
+    function renderVault() {
+      const path = vaultPath();
+      ruleEl.textContent = ruleTemplate.split("<VAULT>").join(path || "<VAULT>");
+      treeEl.textContent = (path || "my-memory") + "/\n  MEMORY.md";
+    }
+    vaultEl.addEventListener("input", renderVault);
     document.getElementById("copy").onclick = function () { copyText("rule", this, "Copied"); };
     document.getElementById("copy-door").onclick = function () { copyText("door", this, "Copied"); };
     document.getElementById("copy-share").onclick = function () { copyText("share-line", this, "Copied"); };
