@@ -6,79 +6,71 @@
   <title>一本笔记，给你用的每一家 AI 看</title>
   <meta name="description" content="长期记忆写成你能打开的笔记。所有 AI 读同一本。模型可以提案，你点头才许写。">
   <link rel="canonical" href="https://hc-ui.github.io/cross-ai-memory/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="一本笔记，给你用的每一家 AI 看">
+  <meta property="og:description" content="模型只能提案，你点头才写入。Cursor、Claude、Codex 读同一本笔记。">
+  <meta property="og:url" content="https://hc-ui.github.io/cross-ai-memory/">
+  <meta property="og:image" content="https://hc-ui.github.io/cross-ai-memory/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://hc-ui.github.io/cross-ai-memory/assets/og.png">
   <style>
     :root {
-      --bg: #f4efe6;
-      --ink: #1c1917;
-      --muted: #57534e;
-      --paper: #fffdf8;
-      --line: #d6d0c4;
-      --ok: #3f6212;
-      --ok-bg: #ecfccb;
-      --no: #9f1239;
-      --no-bg: #ffe4e6;
-      --wait: #854d0e;
-      --wait-bg: #fef9c3;
-      --accent: #1d4ed8;
+      --bg: #f4efe6; --ink: #1c1917; --muted: #57534e; --paper: #fffdf8;
+      --line: #d6d0c4; --ok: #3f6212; --ok-bg: #ecfccb; --no: #9f1239;
+      --no-bg: #ffe4e6; --wait: #854d0e; --wait-bg: #fef9c3; --accent: #1d4ed8;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       color: var(--ink);
       background: var(--bg);
-      font: 18px/1.6 "Iwanami Text", "Source Han Serif SC", "Songti SC", "Noto Serif SC", "Georgia", serif;
+      font: 18px/1.65 "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
     }
     a { color: var(--accent); }
-    header, main, footer { width: min(860px, calc(100% - 40px)); margin: 0 auto; }
+    header, main, footer { width: min(880px, calc(100% - 40px)); margin: 0 auto; }
     header { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0 8px; }
-    nav { font-size: 15px; font-family: ui-sans-serif, "Segoe UI", sans-serif; }
+    nav { font-size: 15px; }
     nav a { color: var(--muted); text-decoration: none; margin-left: 16px; }
-    h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.15; margin: 28px 0 16px; }
+    h1 { font-size: clamp(32px, 5vw, 50px); line-height: 1.18; margin: 24px 0 14px; }
     .lead { font-size: 20px; color: var(--muted); }
-    .punch { font-size: 22px; margin: 28px 0; }
-    h2 { margin: 56px 0 16px; font-size: 28px; }
+    .punch { font-size: 22px; margin: 24px 0 8px; }
+    h2 { margin: 52px 0 14px; font-size: 26px; }
     .rules { display: grid; gap: 12px; padding: 0; list-style: none; }
     .rules li { background: var(--paper); border: 1px solid var(--line); padding: 16px 18px; }
-    .rules b { display: block; font-size: 14px; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; font-family: ui-sans-serif, "Segoe UI", sans-serif; }
+    .rules b { display: block; font-size: 13px; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; }
     .week { display: grid; gap: 14px; }
     @media (min-width: 800px) { .week { grid-template-columns: 1fr 1fr 1fr; } }
-    article {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      padding: 18px 18px 16px;
-      min-height: 100%;
-    }
-    article .when { font-family: ui-sans-serif, "Segoe UI", sans-serif; font-size: 13px; letter-spacing: .06em; color: var(--muted); }
+    article { background: var(--paper); border: 1px solid var(--line); padding: 18px; min-height: 100%; }
+    article .when { font-size: 13px; letter-spacing: .06em; color: var(--muted); }
     article h3 { margin: 8px 0 10px; font-size: 20px; }
     article p { margin: 0 0 12px; font-size: 16px; }
-    article a { font-family: ui-sans-serif, "Segoe UI", sans-serif; font-size: 14px; }
     .cands { display: grid; gap: 12px; }
     .cand { padding: 14px 16px; border: 1px solid var(--line); background: var(--paper); }
-    .pill { display: inline-block; font-family: ui-sans-serif, "Segoe UI", sans-serif; font-size: 12px; padding: 2px 8px; margin-bottom: 8px; }
+    .pill { display: inline-block; font-size: 12px; padding: 2px 8px; margin-bottom: 8px; }
     .ok { background: var(--ok-bg); color: var(--ok); }
     .no { background: var(--no-bg); color: var(--no); }
     .wait { background: var(--wait-bg); color: var(--wait); }
-    pre {
-      background: #1c1917;
-      color: #f5f5f4;
-      padding: 18px;
-      overflow: auto;
-      font: 14px/1.5 ui-monospace, "Cascadia Mono", Consolas, monospace;
-    }
+    pre { background: #1c1917; color: #f5f5f4; padding: 18px; overflow: auto; font: 14px/1.5 ui-monospace, Consolas, monospace; }
     .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
     button, .btn {
-      font: 15px/1 ui-sans-serif, "Segoe UI", sans-serif;
-      border: 1px solid var(--ink);
-      background: var(--ink);
-      color: var(--paper);
-      padding: 10px 14px;
-      cursor: pointer;
-      text-decoration: none;
+      font: 15px/1 inherit; border: 1px solid var(--ink); background: var(--ink);
+      color: var(--paper); padding: 10px 14px; cursor: pointer; text-decoration: none;
     }
     .btn.ghost { background: transparent; color: var(--ink); }
-    figure { margin: 28px 0; }
+    figure { margin: 24px 0; }
     figure img { width: 100%; height: auto; background: var(--paper); border: 1px solid var(--line); }
-    footer { color: var(--muted); font-size: 14px; padding: 48px 0 36px; font-family: ui-sans-serif, "Segoe UI", sans-serif; }
+    .note {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 22px 22px 18px;
+      box-shadow: 0 1px 0 #ece7dc;
+    }
+    .note .meta { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+    .note h3 { margin: 0 0 10px; }
+    .note p { margin: 0 0 10px; }
+    .share { background: var(--paper); border: 1px dashed var(--line); padding: 14px 16px; font-size: 16px; }
+    footer { color: var(--muted); font-size: 14px; padding: 48px 0 36px; }
   </style>
 </head>
 <body>
@@ -93,9 +85,28 @@
     <h1>一本笔记，给你用的每一家 AI 看</h1>
     <p class="lead">早上跟 Cursor 说好下载目录。晚上 Claude 又问一遍。下周 Codex 当没这回事。不是模型笨，是每家各记各的，而且那本账你通常打不开。</p>
     <p class="punch">长期要记住的东西，写成你能打开的笔记。所有 AI 都读同一本。模型可以提案，你点头才许写。</p>
+    <p class="share" id="share-line">一本笔记给所有 AI 看。模型只能提案，你点头才写入。<br>https://hc-ui.github.io/cross-ai-memory/</p>
+    <p class="row">
+      <button type="button" id="copy-share">复制分享语</button>
+    </p>
+
+    <h2>同一天，差一本笔记</h2>
+    <p>林可周一刚定过：新软件放 <code>E:/Apps</code>。周三换 Claude，现场会变成这样——</p>
     <figure>
-      <img src="assets/idea.zh.svg" alt="三家 AI 各记各的；一本共用笔记，你批准才写入">
+      <img src="assets/chat.zh.svg" alt="没有共用笔记会再问一遍，有笔记就接着上次的决定">
     </figure>
+
+    <h2>周三 Claude 打开的，就是这篇</h2>
+    <div class="note">
+      <div class="meta">shared/install-path.md · 周一写入 · 同意写入 CAND-20260824-01</div>
+      <h3>结论</h3>
+      <p>新软件放到 <code>E:/Apps</code>。Downloads 只放能删的东西。</p>
+      <h3>还不确定的</h3>
+      <p>没有。不要“帮忙”改回 Downloads。</p>
+      <h3>谁该读</h3>
+      <p>任何要安装、解压、或问“放哪”的 AI。</p>
+      <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/shared/install-path.md">在仓库里打开原文</a>
+    </div>
 
     <h2>方法就三句</h2>
     <ol class="rules">
@@ -104,8 +115,8 @@
       <li><b>03</b>AI 可以提案。你没点头，它不能写。记错的东西不许变成“事实”。</li>
     </ol>
 
-    <h2>先看一本正在用的笔记</h2>
-    <p>林可是虚构的。下面三个文件是真的。周一写入，周三另一家 AI 读到，周日只出清单。</p>
+    <h2>一周怎么走完</h2>
+    <p>林可是虚构的。文件是真的。周一写入，周三另一家读到，周日只出清单。</p>
     <figure>
       <img src="assets/week.zh.svg" alt="周一写，周三读，周日只提案">
     </figure>
@@ -113,36 +124,36 @@
       <article>
         <div class="when">周一 · Cursor</div>
         <h3>写下一条事实</h3>
-        <p>新软件放到 <code>E:/Apps</code>。先提案，再说「同意写入」。只多一篇笔记。</p>
-        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/shared/install-path.md">打开 install-path.md</a>
+        <p>先提案，再说「同意写入」。只多一篇笔记。</p>
+        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/shared/install-path.md">install-path.md</a>
       </article>
       <article>
         <div class="when">周三 · Claude</div>
         <h3>读同一篇</h3>
-        <p>新窗口，另一家产品。从 MEMORY.md 进，再读安装路径。没有再问文件该放哪。</p>
-        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/MEMORY.md">打开 MEMORY.md</a>
+        <p>新窗口，另一家产品。从 MEMORY.md 进。没有再问放哪。</p>
+        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/MEMORY.md">MEMORY.md</a>
       </article>
       <article>
         <div class="when">周日 · Codex</div>
         <h3>只出清单</h3>
-        <p>扫描本周本地会话。一条批准，一条驳回，一条还开着。正文一篇没动。</p>
-        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/proposals/week-2026-08-24.md">打开当周提案</a>
+        <p>一条批准，一条驳回，一条还开着。正文一篇没动。</p>
+        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/proposals/week-2026-08-24.md">当周提案</a>
       </article>
     </div>
 
-    <h2>周日那张清单长这样</h2>
+    <h2>周日那张清单</h2>
     <div class="cands">
       <div class="cand">
         <span class="pill ok">CAND-01 · 已批准并写入</span>
-        <div>安装路径是长期事实。写入 <code>shared/install-path.md</code>，变更号 MEM-20260824-01。</div>
+        <div>安装路径是长期事实。写入 <code>shared/install-path.md</code>。</div>
       </div>
       <div class="cand">
         <span class="pill no">CAND-02 · 驳回，以后别再列</span>
-        <div>「改 README 涨星」是猜测，不是事实。驳回留在清单上，免得下周又拎出来。</div>
+        <div>「改 README 涨星」是猜测。驳回留在清单上，免得下周又拎出来。</div>
       </div>
       <div class="cand">
         <span class="pill wait">CAND-03 · 还开着</span>
-        <div>leafbox 手册语气。等林可再说「同意写入」。没点头就不许改正文。</div>
+        <div>leafbox 手册语气。没点头就不许改正文。</div>
       </div>
     </div>
 
@@ -167,15 +178,16 @@
     MIT · 林可是虚构人物 · <a href="https://github.com/hc-ui/cross-ai-memory">hc-ui/cross-ai-memory</a>
   </footer>
   <script>
-    document.getElementById("copy").onclick = async function () {
-      const text = document.getElementById("rule").innerText;
-      try {
-        await navigator.clipboard.writeText(text);
-        this.textContent = "已复制";
-      } catch (err) {
-        this.textContent = "选中后 Ctrl+C";
-      }
-    };
+    function copyText(id, btn, ok) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = ok;
+      }).catch(function () {
+        btn.textContent = "选中后 Ctrl+C";
+      });
+    }
+    document.getElementById("copy").onclick = function () { copyText("rule", this, "已复制"); };
+    document.getElementById("copy-share").onclick = function () { copyText("share-line", this, "已复制"); };
   </script>
 </body>
 </html>

@@ -15,7 +15,14 @@ The models are not stupid. Each product keeps its own memory, and that memory is
 
 **Write the durable facts in notes you can open. Point every AI at the same notes. Let the model propose. You approve the write.**
 
-![Three AIs forget separately; one shared notebook remembers after you approve](assets/idea.svg)
+Share this first:
+
+```text
+One notebook for every AI. Agents propose. You approve.
+https://hc-ui.github.io/cross-ai-memory/
+```
+
+![Without a shared notebook Claude asks again; with one it continues](assets/chat.svg)
 
 ## Don't read about it. Open the notebook.
 

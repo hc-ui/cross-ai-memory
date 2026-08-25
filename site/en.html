@@ -6,6 +6,13 @@
   <title>One notebook for every AI you use</title>
   <meta name="description" content="Write durable facts in notes you can open. Point every AI at the same notes. Agents propose. You approve.">
   <link rel="canonical" href="https://hc-ui.github.io/cross-ai-memory/en.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="One notebook for every AI you use">
+  <meta property="og:description" content="Agents may propose. They do not write until you say so.">
+  <meta property="og:url" content="https://hc-ui.github.io/cross-ai-memory/en.html">
+  <meta property="og:image" content="https://hc-ui.github.io/cross-ai-memory/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
   <style>
     :root {
       --bg: #f4efe6; --ink: #1c1917; --muted: #57534e; --paper: #fffdf8;
@@ -13,29 +20,28 @@
       --no-bg: #ffe4e6; --wait: #854d0e; --wait-bg: #fef9c3; --accent: #1d4ed8;
     }
     * { box-sizing: border-box; }
-    body { margin: 0; color: var(--ink); background: var(--bg); font: 18px/1.6 Georgia, "Iwanami Text", serif; }
+    body { margin: 0; color: var(--ink); background: var(--bg); font: 18px/1.65 Georgia, "Iwanami Text", serif; }
     a { color: var(--accent); }
-    header, main, footer { width: min(860px, calc(100% - 40px)); margin: 0 auto; }
+    header, main, footer { width: min(880px, calc(100% - 40px)); margin: 0 auto; }
     header { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0 8px; }
     nav { font-size: 15px; font-family: ui-sans-serif, "Segoe UI", sans-serif; }
     nav a { color: var(--muted); text-decoration: none; margin-left: 16px; }
-    h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.15; margin: 28px 0 16px; }
+    h1 { font-size: clamp(32px, 5vw, 50px); line-height: 1.18; margin: 24px 0 14px; }
     .lead { font-size: 20px; color: var(--muted); }
-    .punch { font-size: 22px; margin: 28px 0; }
-    h2 { margin: 56px 0 16px; font-size: 28px; }
+    .punch { font-size: 22px; margin: 24px 0 8px; }
+    h2 { margin: 52px 0 14px; font-size: 26px; }
     .rules { display: grid; gap: 12px; padding: 0; list-style: none; }
     .rules li { background: var(--paper); border: 1px solid var(--line); padding: 16px 18px; }
-    .rules b { display: block; font-size: 14px; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; font-family: ui-sans-serif, "Segoe UI", sans-serif; }
+    .rules b { display: block; font-size: 13px; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; font-family: ui-sans-serif, sans-serif; }
     .week { display: grid; gap: 14px; }
     @media (min-width: 800px) { .week { grid-template-columns: 1fr 1fr 1fr; } }
-    article { background: var(--paper); border: 1px solid var(--line); padding: 18px 18px 16px; min-height: 100%; }
-    article .when { font-family: ui-sans-serif, "Segoe UI", sans-serif; font-size: 13px; letter-spacing: .06em; color: var(--muted); }
+    article { background: var(--paper); border: 1px solid var(--line); padding: 18px; min-height: 100%; }
+    article .when { font-size: 13px; letter-spacing: .06em; color: var(--muted); font-family: ui-sans-serif, sans-serif; }
     article h3 { margin: 8px 0 10px; font-size: 20px; }
     article p { margin: 0 0 12px; font-size: 16px; }
-    article a { font-family: ui-sans-serif, "Segoe UI", sans-serif; font-size: 14px; }
     .cands { display: grid; gap: 12px; }
     .cand { padding: 14px 16px; border: 1px solid var(--line); background: var(--paper); }
-    .pill { display: inline-block; font-family: ui-sans-serif, "Segoe UI", sans-serif; font-size: 12px; padding: 2px 8px; margin-bottom: 8px; }
+    .pill { display: inline-block; font-size: 12px; padding: 2px 8px; margin-bottom: 8px; font-family: ui-sans-serif, sans-serif; }
     .ok { background: var(--ok-bg); color: var(--ok); }
     .no { background: var(--no-bg); color: var(--no); }
     .wait { background: var(--wait-bg); color: var(--wait); }
@@ -43,9 +49,14 @@
     .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
     button, .btn { font: 15px/1 ui-sans-serif, "Segoe UI", sans-serif; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); padding: 10px 14px; cursor: pointer; text-decoration: none; }
     .btn.ghost { background: transparent; color: var(--ink); }
-    figure { margin: 28px 0; }
+    figure { margin: 24px 0; }
     figure img { width: 100%; height: auto; background: var(--paper); border: 1px solid var(--line); }
-    footer { color: var(--muted); font-size: 14px; padding: 48px 0 36px; font-family: ui-sans-serif, "Segoe UI", sans-serif; }
+    .note { background: var(--paper); border: 1px solid var(--line); padding: 22px 22px 18px; }
+    .note .meta { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+    .note h3 { margin: 0 0 10px; }
+    .note p { margin: 0 0 10px; }
+    .share { background: var(--paper); border: 1px dashed var(--line); padding: 14px 16px; font-size: 16px; }
+    footer { color: var(--muted); font-size: 14px; padding: 48px 0 36px; font-family: ui-sans-serif, sans-serif; }
   </style>
 </head>
 <body>
@@ -58,11 +69,28 @@
   </header>
   <main>
     <h1>One notebook for every AI you use</h1>
-    <p class="lead">You told Cursor the folder this morning. Tonight Claude asks again. Next week Codex has never heard of it. The models are not stupid. Each product keeps its own black box.</p>
+    <p class="lead">You told Cursor the folder this morning. Tonight Claude asks again. Next week Codex has never heard of it.</p>
     <p class="punch">Write the durable facts in notes you can open. Point every AI at the same notes. Let the model propose. You approve the write.</p>
+    <p class="share" id="share-line">One notebook for every AI. Agents propose. You approve.<br>https://hc-ui.github.io/cross-ai-memory/en.html</p>
+    <p class="row"><button type="button" id="copy-share">Copy share text</button></p>
+
+    <h2>The same Wednesday</h2>
+    <p>Monday, Lin Ke decided installers go to <code>E:/Apps</code>. Wednesday, Claude is a different product.</p>
     <figure>
-      <img src="assets/idea.svg" alt="Three AIs forget separately; one shared notebook remembers after you approve">
+      <img src="assets/chat.svg" alt="Without a shared notebook Claude asks again; with one it continues the decision">
     </figure>
+
+    <h2>This is the note Claude opened</h2>
+    <div class="note">
+      <div class="meta">shared/install-path.md · written Monday · 同意写入 CAND-20260824-01</div>
+      <h3>Conclusion</h3>
+      <p>New software goes to <code>E:/Apps</code>. Downloads is only for files that may be deleted.</p>
+      <h3>Still uncertain</h3>
+      <p>None. Do not “helpfully” switch back to Downloads.</p>
+      <h3>Who should read this</h3>
+      <p>Any AI that installs, unzips, or asks where a file should go.</p>
+      <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/shared/install-path.md">Open the file in the repo</a>
+    </div>
 
     <h2>Three sentences</h2>
     <ol class="rules">
@@ -71,8 +99,7 @@
       <li><b>03</b>An AI may propose. It does not write until you say so.</li>
     </ol>
 
-    <h2>Open a notebook that is already in use</h2>
-    <p>Lin Ke is fictional. The files are real. Monday writes. Wednesday another product reads. Sunday only proposes.</p>
+    <h2>The rest of the week</h2>
     <figure>
       <img src="assets/week.svg" alt="Monday write, Wednesday read, Sunday propose">
     </figure>
@@ -80,37 +107,28 @@
       <article>
         <div class="when">Monday · Cursor</div>
         <h3>Write one fact</h3>
-        <p>New software goes to <code>E:/Apps</code>. Propose first. Then 同意写入. One new note.</p>
-        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/shared/install-path.md">Open install-path.md</a>
+        <p>Propose first. Then 同意写入. One new note.</p>
+        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/shared/install-path.md">install-path.md</a>
       </article>
       <article>
         <div class="when">Wednesday · Claude</div>
         <h3>Read the same note</h3>
-        <p>New chat. Other product. Starts at MEMORY.md. Does not ask where files go.</p>
-        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/MEMORY.md">Open MEMORY.md</a>
+        <p>New chat. Other product. Starts at MEMORY.md. Does not ask again.</p>
+        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/MEMORY.md">MEMORY.md</a>
       </article>
       <article>
         <div class="when">Sunday · Codex</div>
         <h3>Propose only</h3>
-        <p>Scan the week's local sessions. One approved, one rejected, one still open. No silent write.</p>
-        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/proposals/week-2026-08-24.md">Open the weekly list</a>
+        <p>One approved, one rejected, one still open. No silent write.</p>
+        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/proposals/week-2026-08-24.md">weekly list</a>
       </article>
     </div>
 
-    <h2>What Sunday's list looks like</h2>
+    <h2>Sunday's list</h2>
     <div class="cands">
-      <div class="cand">
-        <span class="pill ok">CAND-01 · approved and written</span>
-        <div>Installer path is a stable fact. Written to <code>shared/install-path.md</code> as MEM-20260824-01.</div>
-      </div>
-      <div class="cand">
-        <span class="pill no">CAND-02 · rejected, do not list again</span>
-        <div>"Rewrite the README to get stars" is a guess. The rejection stays so next week cannot revive it.</div>
-      </div>
-      <div class="cand">
-        <span class="pill wait">CAND-03 · still open</span>
-        <div>leafbox man page tone. Waiting for 同意写入. No edit until then.</div>
-      </div>
+      <div class="cand"><span class="pill ok">CAND-01 · approved and written</span><div>Installer path. Written to <code>shared/install-path.md</code>.</div></div>
+      <div class="cand"><span class="pill no">CAND-02 · rejected</span><div>"Rewrite the README to get stars" is a guess. Keep the rejection visible.</div></div>
+      <div class="cand"><span class="pill wait">CAND-03 · still open</span><div>leafbox man page tone. No edit until 同意写入.</div></div>
     </div>
 
     <h2>Steal it without installing</h2>
@@ -125,24 +143,18 @@ Never store tokens, passwords, or cookies.</pre>
       <button type="button" id="copy">Copy this</button>
       <a class="btn ghost" href="https://github.com/hc-ui/cross-ai-memory">Read the full method on GitHub</a>
     </p>
-
-    <h2>Why this gets more useful</h2>
-    <p>More people will use AI. More people will use more than one AI. Vendors will not sync last week's decision across Cursor and Claude. You need one notebook of your own, not six vendor brains.</p>
-    <p>Auto-memory fails dangerously: it writes the wrong note, then defends it. This method fails boringly: you forget to write a note.</p>
   </main>
   <footer>
     MIT · Lin Ke is fictional · <a href="https://github.com/hc-ui/cross-ai-memory">hc-ui/cross-ai-memory</a>
   </footer>
   <script>
-    document.getElementById("copy").onclick = async function () {
-      const text = document.getElementById("rule").innerText;
-      try {
-        await navigator.clipboard.writeText(text);
-        this.textContent = "Copied";
-      } catch (err) {
-        this.textContent = "Select and copy";
-      }
-    };
+    function copyText(id, btn, ok) {
+      navigator.clipboard.writeText(document.getElementById(id).innerText).then(function () {
+        btn.textContent = ok;
+      }).catch(function () { btn.textContent = "Select and copy"; });
+    }
+    document.getElementById("copy").onclick = function () { copyText("rule", this, "Copied"); };
+    document.getElementById("copy-share").onclick = function () { copyText("share-line", this, "Copied"); };
   </script>
 </body>
 </html>

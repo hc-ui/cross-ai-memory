@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-label="Same decision, with and without a shared notebook">
+  <rect width="960" height="420" fill="#f4efe6"/>
+  <rect x="16" y="16" width="452" height="388" rx="14" fill="#fffdf8" stroke="#d6d0c4"/>
+  <rect x="492" y="16" width="452" height="388" rx="14" fill="#fffdf8" stroke="#3f6212"/>
+  <text x="242" y="52" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#9f1239">Wednesday · no notebook</text>
+  <text x="718" y="52" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#3f6212">Wednesday · one notebook</text>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">
+    <rect x="36" y="76" width="412" height="52" rx="8" fill="#ffe4e6"/>
+    <text x="52" y="98" fill="#9f1239">Claude</text>
+    <text x="52" y="118" fill="#1c1917">Where do installers go? Downloads?</text>
+    <rect x="36" y="140" width="412" height="72" rx="8" fill="#f5f5f4"/>
+    <text x="52" y="162" fill="#57534e">Lin Ke</text>
+    <text x="52" y="182" fill="#1c1917">I told Cursor this on Monday.</text>
+    <text x="52" y="202" fill="#1c1917">E:/Apps. Why ask again?</text>
+    <rect x="36" y="224" width="412" height="52" rx="8" fill="#ffe4e6"/>
+    <text x="52" y="246" fill="#9f1239">Claude</text>
+    <text x="52" y="266" fill="#1c1917">OK  I will use Downloads?</text>
+    <text x="242" y="368" text-anchor="middle" fill="#9f1239">Wrong memory keeps going.</text>
+  </g>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">
+    <rect x="512" y="76" width="412" height="72" rx="8" fill="#ecfccb"/>
+    <text x="528" y="98" fill="#3f6212">Claude</text>
+    <text x="528" y="118" fill="#1c1917">Read MEMORY.md ’ install-path.</text>
+    <text x="528" y="138" fill="#1c1917">New software goes to E:/Apps. Install now?</text>
+    <rect x="512" y="160" width="412" height="52" rx="8" fill="#f5f5f4"/>
+    <text x="528" y="182" fill="#57534e">Lin Ke</text>
+    <text x="528" y="202" fill="#1c1917">Yes. Do not switch back to Downloads.</text>
+    <rect x="512" y="224" width="412" height="72" rx="8" fill="#ecfccb"/>
+    <text x="528" y="246" fill="#3f6212">Claude</text>
+    <text x="528" y="266" fill="#1c1917">I will not. The note says: do not</text>
+    <text x="528" y="286" fill="#1c1917">helpfully revert to Downloads.</text>
+    <text x="718" y="368" text-anchor="middle" fill="#3f6212">A written fact survives the next chat.</text>
+  </g>
+</svg>
