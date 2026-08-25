@@ -1,40 +1,55 @@
-# cross-ai-memory
-
-你已经同时用好几家 AI。它们各记各的，下场对话还是两眼一抹黑。
-
-`cross-ai-memory` 是一套 **人工批准的本地长期记忆**。Markdown 才是唯一真相。AI 可以提案，你没点头它不能写。
+# 一本笔记，给你用的每一家 AI 看
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
+早上你跟 Cursor 说好了下载目录。
+晚上换 Claude，它又问一遍。
+下周开 Codex，它当没这回事。
+
+不是模型不够聪明。是每家 AI 各有一本小账，而且那本账你通常打不开。以后用 AI 的人会更多，一个人同时用两家、三家也会更普通。这个缺口不会自己消失。
+
+所以这套方法就三句话：
+
+**长期要记住的东西，写成你能打开的笔记。所有 AI 都读同一本。模型可以提案，你点头才许写。**
+
+![三家 AI 各记各的；一本共用笔记，你批准才写入](assets/idea.zh.svg)
+
+## 原理，就这三句
+
+1. 长期记忆放在 **你能打开的 Markdown** 里，不放在厂商的隐藏脑子里。
+2. **每家 AI 读同一个文件夹。** Cursor、Claude、Codex、Grok，共用一本。
+3. **AI 可以提案，你没点头它不能写。** 记错的东西，不许变成“事实”。
+
+这就是全部发明。命令行可以不装。你只把这三句话抄走，方法已经在你手里了。
+
+## 为什么不让 AI 自己记
+
+现在常见的做法是：把对话全吞进去，做成向量，下次再“相关注入”。省事。错的地方在于——一次猜错，下周会当成既定事实。
+
+这套方法失败得很无聊：你忘了写一条。
+自动记忆失败得很危险：它写错了，还接着用。
+
+厂商自带的记忆，够用在“我们刚才聊了什么”。
+它当不了跨窗口、跨工具、跨星期的唯一真相。
+
+## 不装也能抄
+
+把下面这段贴进每一家 AI 的规则，改掉文件夹路径就行。
+
 ```text
-本机会话文件  ->  只读采集  ->  每周拟更新清单
-                                  |
-                                  v
-                           你批准某一条笔记
-                                  |
-                                  v
-                           Obsidian / git 记忆库
+长期记忆是一个本地 Markdown 文件夹。
+先读 MEMORY.md，再只打开索引点名的那几篇。
+不要把整个文件夹读完。
+除非我明确说「记住 / remember / 同意写入 / approve write」，不要写笔记。
+先提最小改动。
+不要存 Token、密码、Cookie。
 ```
 
-## 这不是又一个记忆引擎
+一个主题只留一篇正文。你现在说的，大于旧笔记。现场核过的事实，大于猜测。两篇打架就摊开说，不许悄悄覆盖。
 
-GitHub 上已经有很多自动灌库工具：把对话切碎、做向量、下次再“相关注入”。
+仓库里的 `starter/` 就是这本笔记的空壳，已经按这个规矩排好了。
 
-这套反着做。
-
-| | `cross-ai-memory` | 常见 Agent Memory |
-| --- | --- | --- |
-| 谁写库 | 你看过提案再写 | 模型自己持续写 |
-| 真相在哪 | 能打开的笔记 | 向量库 / 图谱 |
-| 跨 AI | 读多家本地会话文件 | 通常只服务一个产品 |
-| 厂商隐藏记忆 | 不读、不同步 | 常常被当成事实 |
-| 失败形态 | 漏记一条 | 静默记错 |
-
-它更像归档纪律，不像 Mem0。
-
-## 60 秒
-
-Python 3.10+，零依赖。还没上 PyPI：
+## 想先跑起来
 
 ```bash
 pip install git+https://github.com/hc-ui/cross-ai-memory.git
@@ -42,62 +57,21 @@ aimem init ./my-memory
 aimem check ./my-memory
 ```
 
-把 `my-memory/adapters/cursor.md`（或 Claude / Codex 那份）贴进对应 AI 的规则，把 `<VAULT>` 换成 `my-memory` 的路径。
+把 `my-memory/adapters/cursor.md`（或 Claude / Codex 那份）里的 `<VAULT>` 换成这个文件夹。问一个需要上周决定的问题。它应该先打开 `MEMORY.md`，再读一两篇，而不是把整棵目录塞进上下文。
 
-问一个需要旧决定的问题。它应该先读 `MEMORY.md`，再读一两篇笔记，而不是把整个文件夹塞进上下文。
+只有你想落笔记时再说「记住」。
 
-只有你想落笔记时再说 `记住` 或 `approve write`。
+命令、采集目录、每周提案任务见 [docs/cli.md](docs/cli.md)。
+写死的规则见 [SPEC.md](SPEC.md)。
 
-## 命令
+## 这不是什么
 
-| 命令 | 作用 |
-| --- | --- |
-| `aimem init [DIR]` | 复制启动库和适配器 |
-| `aimem check [DIR]` | 只读健康检查 |
-| `aimem doctor [DIR]` | 检查记忆库，并列出本机存在的 AI 会话目录 |
-| `aimem collect init` | 把现有会话字节标成基线，不回填历史 |
-| `aimem collect scan` | 列出新增或追加的允许清单文件 |
-| `aimem collect read` | 只抽出 user/assistant 文本，并遮蔽疑似凭据 |
-| `aimem collect commit` | 只推进采集检查点，不是 git commit |
-| `aimem collect normalize` | 单独解析一份 jsonl，不动 inbox 状态 |
+- 不是云端记忆 API
+- 不是向量数据库
+- 不是去同步 ChatGPT / Claude / Cursor 产品里的隐藏记忆
+- 不是把私人笔记公开——本仓只带一份空的示例库
 
-`collect` 不会改记忆库。
-
-Windows 也可以用 `tools/Collect-AIMemoryCandidates.ps1`，允许清单和检查点语义与 Python 版相同。
-
-## 采集器读什么
-
-只读本机会话，而且只留 user / assistant 正文：
-
-| 来源 | 默认目录 |
-| --- | --- |
-| Codex | `~/.codex/sessions`、`~/.codex/archived_sessions` |
-| Claude Code | `~/.claude/projects` |
-| Grok | `~/.grok/sessions` |
-| Grok Heavy | `~/.grok-heavy/sessions` |
-| Antigravity | `~/.gemini/antigravity/brain` |
-| Cursor | `~/.cursor/projects` 以及 Cursor OD 的 chat 目录 |
-
-系统提示、工具调用、工具结果、推理、鉴权文件、设置、缓存、附件、Codex 子代理会话一律跳过。文件要静置 15 分钟才会被扫到。来源之间公平轮询，不会让一家 AI 的积压占满整批。
-
-本机没有的目录会跳过。路径不一样就在 `aimem collect init` 之后改 `~/AI-Memory-Inbox/config.json`。
-
-## 批准口令
-
-| 你说 | 可以 | 不可以 |
-| --- | --- | --- |
-| `同意写入` / `approve write` | 写指定笔记、`aimem check`、本地提交 | push |
-| `同意推送` / `approve push` | 把已核验提交普通推送 | 强推 |
-| `同意写入并推送` / `approve write and push` | 两段都做，检查失败就停 | 跳过检查 |
-
-每周任务只该出清单。完整提示词在 `tools/weekly-proposal-prompt.md`。
-
-## 隐私
-
-- 只在本地运行。没有 API key，也没有云端记忆服务。
-- inbox 只保存检查点，不保存完整原始对话。
-- 常见 Token 会先被替换成 `[REDACTED]`。这不能证明所有秘密都找得到。
-- 不要把真正的私人笔记发布到公开仓。本仓库只带示例库。
+只在本地跑。没有 API key。
 
 ## License
 

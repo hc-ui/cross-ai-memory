@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cross-ai-memory"
-version = "0.1.0"
-description = "Human-gated, local, cross-AI long-term memory. Markdown is the source of truth."
+version = "0.1.1"
+description = "One shared notebook for every AI you use. Agents propose; you approve."
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.10"
