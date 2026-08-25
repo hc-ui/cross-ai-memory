@@ -18,7 +18,8 @@ from aimem.collect import (
     source_presence,
     status,
 )
-from aimem.paths import default_inbox
+from aimem.paths import default_inbox, demo_vault
+from aimem.tour import tour_text
 from aimem.vault import init_vault
 
 
@@ -29,10 +30,11 @@ def _print_json(payload: object) -> int:
 
 def cmd_init(args: argparse.Namespace) -> int:
     dest = Path(args.path).expanduser()
-    copied = init_vault(dest, force=args.force)
-    print(f"vault ready: {dest.resolve()}")
+    copied = init_vault(dest, force=args.force, demo=args.demo)
+    kind = "demo vault" if args.demo else "empty vault"
+    print(f"{kind} ready: {dest.resolve()}")
     print(f"copied {len(copied)} files")
-    print("next: point every AI at MEMORY.md, then `aimem check` that folder")
+    print("next: open MEMORY.md, then `aimem check` that folder")
     return 0
 
 
@@ -47,6 +49,11 @@ def cmd_check(args: argparse.Namespace) -> int:
         print(f"{issue.code}\t{issue.file}\t{issue.detail}")
     print(f"issues: {len(result.issues)}")
     return 1
+
+
+def cmd_tour(_args: argparse.Namespace) -> int:
+    print(tour_text(demo_vault()), end="")
+    return 0
 
 
 def cmd_doctor(args: argparse.Namespace) -> int:
@@ -128,7 +135,11 @@ def build_parser() -> argparse.ArgumentParser:
     init = sub.add_parser("init", help="copy the starter vault")
     init.add_argument("path", nargs="?", default="./my-memory")
     init.add_argument("--force", action="store_true")
+    init.add_argument("--demo", action="store_true", help="copy Lin Ke's lived-in notebook instead of the empty starter")
     init.set_defaults(func=cmd_init)
+
+    tour = sub.add_parser("tour", help="print Lin Ke's week: write, read-across, propose")
+    tour.set_defaults(func=cmd_tour)
 
     check = sub.add_parser("check", help="read-only vault health check")
     check.add_argument("path", nargs="?", default=".")

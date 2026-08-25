@@ -23,6 +23,16 @@ def bundled_data(*parts: str) -> Path:
     raise FileNotFoundError(f"bundled data not found: {'/'.join(parts)}")
 
 
+def demo_vault() -> Path:
+    packaged = package_dir() / "data" / "demo"
+    if (packaged / "MEMORY.md").exists():
+        return packaged
+    fallback = repo_root() / "examples" / "lin-ke"
+    if (fallback / "MEMORY.md").exists():
+        return fallback
+    raise FileNotFoundError("demo vault not found")
+
+
 def default_inbox() -> Path:
     return Path.home() / "AI-Memory-Inbox"
 

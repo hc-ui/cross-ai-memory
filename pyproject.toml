@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cross-ai-memory"
-version = "0.1.1"
+version = "0.2.0"
 description = "One shared notebook for every AI you use. Agents propose; you approve."
 readme = "README.md"
 license = { text = "MIT" }
@@ -36,6 +36,7 @@ packages = ["src/aimem"]
 [tool.hatch.build.targets.wheel.force-include]
 "starter" = "aimem/data/starter"
 "adapters" = "aimem/data/adapters"
+"examples/lin-ke" = "aimem/data/demo"
 "tools/weekly-proposal-prompt.md" = "aimem/data/weekly-proposal-prompt.md"
 
 [tool.pytest.ini_options]

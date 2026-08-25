@@ -1,5 +1,8 @@
 # 一本笔记，给你用的每一家 AI 看
 
+[![CI](https://github.com/hc-ui/cross-ai-memory/actions/workflows/ci.yml/badge.svg)](https://github.com/hc-ui/cross-ai-memory/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 [English](README.md) · [简体中文](README.zh-CN.md)
 
 早上你跟 Cursor 说好了下载目录。
@@ -8,11 +11,25 @@
 
 不是模型不够聪明。是每家 AI 各有一本小账，而且那本账你通常打不开。以后用 AI 的人会更多，一个人同时用两家、三家也会更普通。这个缺口不会自己消失。
 
-所以这套方法就三句话：
-
 **长期要记住的东西，写成你能打开的笔记。所有 AI 都读同一本。模型可以提案，你点头才许写。**
 
 ![三家 AI 各记各的；一本共用笔记，你批准才写入](assets/idea.zh.svg)
+
+## 先别看说明，先点开这本正在用的笔记
+
+[examples/lin-ke/MEMORY.md](examples/lin-ke/MEMORY.md) 是一本**虚构**、但已经在运转的记忆库。林可不是真人。文件是真的。
+
+| 点开 | 故事里发生了什么 |
+| --- | --- |
+| [install-path.md](examples/lin-ke/shared/install-path.md) | 周一：Cursor 得到「同意写入」后写下 `E:/Apps` |
+| [MEMORY.md](examples/lin-ke/MEMORY.md) | 周三：Claude 从这里进，没有再问路径 |
+| [week-2026-08-24.md](examples/lin-ke/proposals/week-2026-08-24.md) | 周日：Codex 只出清单 |
+| [leafbox.md](examples/lin-ke/work/leafbox.md) | 写错过一次，又改了回来 |
+| [CHANGELOG.md](examples/lin-ke/shared/CHANGELOG.md) | 权限记在这里，diff 交给 Git |
+
+一整周：[docs/walkthrough.zh-CN.md](docs/walkthrough.zh-CN.md) · 或者跑 `aimem tour`
+
+![周一写，周三读，周日只提案](assets/week.zh.svg)
 
 ## 原理，就这三句
 
@@ -20,7 +37,7 @@
 2. **每家 AI 读同一个文件夹。** Cursor、Claude、Codex、Grok，共用一本。
 3. **AI 可以提案，你没点头它不能写。** 记错的东西，不许变成“事实”。
 
-这就是全部发明。命令行可以不装。你只把这三句话抄走，方法已经在你手里了。
+这就是全部发明。命令行可以不装。
 
 ## 为什么不让 AI 自己记
 
@@ -31,6 +48,8 @@
 
 厂商自带的记忆，够用在“我们刚才聊了什么”。
 它当不了跨窗口、跨工具、跨星期的唯一真相。
+
+演示里 Codex 提过「改 README 涨星」。林可驳回了。驳回留在当周清单上，下周扫描不能再拎出来。
 
 ## 不装也能抄
 
@@ -47,31 +66,35 @@
 
 一个主题只留一篇正文。你现在说的，大于旧笔记。现场核过的事实，大于猜测。两篇打架就摊开说，不许悄悄覆盖。
 
-仓库里的 `starter/` 就是这本笔记的空壳，已经按这个规矩排好了。
-
 ## 想先跑起来
 
 ```bash
 pip install git+https://github.com/hc-ui/cross-ai-memory.git
-aimem init ./my-memory
-aimem check ./my-memory
+aimem tour
+aimem check examples/lin-ke
+aimem init --demo ./look
 ```
 
-把 `my-memory/adapters/cursor.md`（或 Claude / Codex 那份）里的 `<VAULT>` 换成这个文件夹。问一个需要上周决定的问题。它应该先打开 `MEMORY.md`，再读一两篇，而不是把整棵目录塞进上下文。
+![aimem check examples/lin-ke → 11 篇笔记，ok](assets/check.svg)
+
+`aimem init` 复制空壳。`aimem init --demo` 复制林可那本正在用的。
+
+把 `adapters/cursor.md`（或 Claude / Codex）里的 `<VAULT>` 换成这个文件夹。问一个需要上周决定的问题。它应该先打开 `MEMORY.md`，再读一两篇。
 
 只有你想落笔记时再说「记住」。
 
-命令、采集目录、每周提案任务见 [docs/cli.md](docs/cli.md)。
-写死的规则见 [SPEC.md](SPEC.md)。
+- 命令和采集器：[docs/cli.md](docs/cli.md)
+- 不该漂的规则：[SPEC.md](SPEC.md)
+- 常见问题：[docs/faq.zh-CN.md](docs/faq.zh-CN.md)
 
 ## 这不是什么
 
 - 不是云端记忆 API
 - 不是向量数据库
 - 不是去同步 ChatGPT / Claude / Cursor 产品里的隐藏记忆
-- 不是把私人笔记公开——本仓只带一份空的示例库
+- 不是真人笔记 — `examples/lin-ke` 只是标本
 
-只在本地跑。没有 API key。
+只在本地跑。没有 API key。不要把真正的生活公开出去。
 
 ## License
 

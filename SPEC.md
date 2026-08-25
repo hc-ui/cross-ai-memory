@@ -1,6 +1,6 @@
 # SPEC
 
-If you just want the idea, read the [README](README.md). This page is the method written so another person can reimplement it. Implementations may change. The gates should not.
+If you just want the idea, read the [README](README.md) and open [examples/lin-ke/MEMORY.md](examples/lin-ke/MEMORY.md). This page is the method written so another person can reimplement it. Implementations may change. The gates should not.
 
 ## Problem
 

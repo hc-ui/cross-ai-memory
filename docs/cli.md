@@ -6,14 +6,17 @@ Python 3.10+, zero extra packages.
 
 ```bash
 pip install git+https://github.com/hc-ui/cross-ai-memory.git
-aimem init ./my-memory
-aimem check ./my-memory
-aimem doctor ./my-memory
+aimem tour
+aimem check examples/lin-ke
+aimem init --demo ./look
+aimem doctor ./look
 ```
 
 | Command | What it does |
 | --- | --- |
-| `aimem init [DIR]` | copy the starter vault and adapters |
+| `aimem tour` | print Lin Ke's week |
+| `aimem init [DIR]` | copy the empty starter vault and adapters |
+| `aimem init --demo [DIR]` | copy the lived-in demo vault |
 | `aimem check [DIR]` | read-only health check |
 | `aimem doctor [DIR]` | check the vault and list local AI session roots |
 | `aimem collect init` | mark current transcript bytes as baseline; no backfill |

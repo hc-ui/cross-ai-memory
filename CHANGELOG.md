@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0 - 2026-08-25
+
+- Add Lin Ke's lived-in demo vault, a week walkthrough, and a Sunday proposal list.
+- Add `aimem tour` and `aimem init --demo`.
+- Public page now leads with files a stranger can open, not with commands.
+
 ## 0.1.1 - 2026-08-25
 
 - Public landing page now explains the idea to strangers first: three rules, a picture, then the install.

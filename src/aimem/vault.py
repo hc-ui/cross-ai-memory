@@ -3,12 +3,12 @@ from __future__ import annotations
 import shutil
 from pathlib import Path
 
-from aimem.paths import bundled_data
+from aimem.paths import bundled_data, demo_vault
 
 
-def init_vault(dest: Path, *, force: bool = False) -> list[str]:
+def init_vault(dest: Path, *, force: bool = False, demo: bool = False) -> list[str]:
     dest = dest.resolve()
-    starter = bundled_data("starter")
+    starter = demo_vault() if demo else bundled_data("starter")
     adapters = bundled_data("adapters")
     copied: list[str] = []
 

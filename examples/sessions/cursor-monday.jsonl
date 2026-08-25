@@ -1,0 +1,2 @@
+{"role":"user","message":{"content":[{"type":"text","text":"以后新软件都放到 E:/Apps，Downloads 只放能删的东西。记住。"}]}}
+{"role":"assistant","message":{"content":[{"type":"text","text":"先提案，不直接写库。建议新增 shared/install-path.md：新软件放到 E:/Apps。等你说同意写入。"}]}}

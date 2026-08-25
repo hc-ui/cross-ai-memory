@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="300" viewBox="0 0 960 300" role="img" aria-label="Monday write, Wednesday read, Sunday propose">
+  <rect width="960" height="300" fill="#f6f8fa"/>
+  <rect x="16" y="16" width="296" height="268" rx="14" fill="#ffffff" stroke="#54aeff"/>
+  <rect x="332" y="16" width="296" height="268" rx="14" fill="#ffffff" stroke="#1a7f37"/>
+  <rect x="648" y="16" width="296" height="268" rx="14" fill="#ffffff" stroke="#bf8700"/>
+  <text x="164" y="52" text-anchor="middle" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="700" fill="#0969da">周一 · Cursor</text>
+  <text x="480" y="52" text-anchor="middle" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="700" fill="#1a7f37">周三 · Claude</text>
+  <text x="796" y="52" text-anchor="middle" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="700" fill="#9a6700">周日 · Codex</text>
+  <text x="164" y="110" text-anchor="middle" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#24292f">新软件放到 E:/Apps</text>
+  <text x="164" y="150" text-anchor="middle" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#24292f">先提案</text>
+  <text x="164" y="190" text-anchor="middle" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#24292f">再说同意写入</text>
+  <text x="164" y="230" text-anchor="middle" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="14" fill="#656d76">只多一篇笔记</text>
+  <text x="480" y="110" text-anchor="middle" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#24292f">新窗口，另一家产品</text>
+  <text x="480" y="150" text-anchor="middle" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#24292f">打开 MEMORY.md</text>
+  <text x="480" y="190" text-anchor="middle" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#24292f">再打开安装路径</text>
+  <text x="480" y="230" text-anchor="middle" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="14" fill="#656d76">没有再问一遍</text>
+  <text x="796" y="110" text-anchor="middle" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#24292f">扫描本周本地会话</text>
+  <text x="796" y="150" text-anchor="middle" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#24292f">1 条批准</text>
+  <text x="796" y="190" text-anchor="middle" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#24292f">1 条驳回 · 1 条仍开着</text>
+  <text x="796" y="230" text-anchor="middle" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-size="14" fill="#656d76">没有偷偷写库</text>
+</svg>
