@@ -78,12 +78,19 @@
     .tonight b { display: block; margin-bottom: 4px; }
     .opt { color: var(--muted); font-size: 15px; font-family: ui-sans-serif, sans-serif; }
     .opt code { font-size: 13px; overflow-wrap: anywhere; }
+    .kit {
+      background: var(--paper);
+      border: 1px solid var(--ink);
+      padding: 8px 22px 18px;
+      margin: 28px 0 8px;
+    }
+    .kit > h2 { margin-top: 28px; }
     .pathbox { display: grid; gap: 6px; margin: 8px 0 16px; }
     .pathbox span { font-size: 13px; letter-spacing: .08em; color: var(--muted); font-family: ui-sans-serif, sans-serif; }
     .pathbox input {
       font: 16px/1.4 ui-monospace, Consolas, monospace;
       border: 1px solid var(--ink);
-      background: var(--paper);
+      background: #fff;
       color: var(--ink);
       padding: 12px 14px;
       width: 100%;
@@ -116,16 +123,12 @@
       <li><b>03</b>An AI may propose. It does not write until you say so.</li>
     </ol>
 
+    <div class="kit">
     <h2 id="tonight">Steal it tonight</h2>
     <p>No install. Make a folder, then point every AI at it.</p>
-    <label class="pathbox">
-      <span>Your folder path</span>
-      <input id="vault" type="text" placeholder="D:/my-memory" spellcheck="false" autocomplete="off" inputmode="text">
-    </label>
-    <pre id="tree">my-memory/
-  MEMORY.md</pre>
 
     <h3>1. Save this as MEMORY.md</h3>
+    <p>Create a folder. Paste into Notepad, then Save As → name <code>MEMORY.md</code> → encoding UTF-8. Not <code>.txt</code>. Not Word. If you get <code>MEMORY.md.txt</code>, show file extensions and delete <code>.txt</code>.</p>
     <pre id="door"># Start here
 
 This is the only entry. Do not open the rest of the folder for a self-contained question.
@@ -139,8 +142,14 @@ Do not write unless I say 记住 / approve write.</pre>
       <a class="btn ghost" href="MEMORY.en.md" download="MEMORY.md">Download this file</a>
     </p>
 
-    <h3>2. Fill the path, then copy the rule</h3>
-    <p>Type above and <code>&lt;VAULT&gt;</code> is replaced. Leave it blank to copy the placeholder and edit it yourself.</p>
+    <h3>2. Change the path, then copy the rule</h3>
+    <label class="pathbox">
+      <span>The folder you just made</span>
+      <input id="vault" type="text" value="D:/my-memory" spellcheck="false" autocomplete="off" inputmode="text">
+    </label>
+    <pre id="tree">D:/my-memory/
+  MEMORY.md</pre>
+    <p>Edit this to your real folder before you copy. Backslashes become <code>/</code>.</p>
     <pre id="rule">Long-term memory folder: &lt;VAULT&gt;
 Entry: &lt;VAULT&gt;/MEMORY.md
 Start at the entry. Then open only the notes the index names.
@@ -172,8 +181,17 @@ Never store tokens, passwords, or cookies.</pre>
         <p>Put it in Codex <code>AGENTS.md</code>. The weekly scan reads the same notebook.</p>
       </article>
     </div>
+    <p>Grok or anything else: paste the same block into user rules or the system prompt.</p>
+
+    <h3>4. In a new chat, paste this and see if it opens the file</h3>
+    <pre id="probe">Open D:/my-memory/MEMORY.md and tell me the first heading. Do not guess. Do not ask where the folder is.</pre>
+    <p class="row">
+      <button type="button" id="copy-probe">Copy this probe</button>
+    </p>
+    <p>It should read “Start here”. If it asks for the path, the rule is not loaded, or the file is actually <code>MEMORY.md.txt</code>.</p>
     <p>When a durable fact should land, say 记住 or approve write. It should propose first.</p>
     <p class="opt">Want the empty shell or Lin Ke’s notebook later? <code>pip install git+https://github.com/hc-ui/cross-ai-memory.git</code>, then <code>aimem init ./my-memory</code> or <code>aimem init --demo ./look</code>.</p>
+    </div>
 
     <h2>The same Wednesday</h2>
     <p>Monday, Lin Ke decided installers go to <code>E:/Apps</code>. Wednesday, Claude is a different product.</p>
@@ -240,21 +258,26 @@ Never store tokens, passwords, or cookies.</pre>
     }
     const ruleEl = document.getElementById("rule");
     const treeEl = document.getElementById("tree");
+    const probeEl = document.getElementById("probe");
     const vaultEl = document.getElementById("vault");
     const ruleTemplate = ruleEl.innerText;
+    const probeTemplate = "Open <VAULT>/MEMORY.md and tell me the first heading. Do not guess. Do not ask where the folder is.";
     function vaultPath() {
       let raw = vaultEl.value.trim().replace(/^["']|["']$/g, "").replace(/\\/g, "/").replace(/\/+$/, "");
       if (/\/MEMORY\.md$/i.test(raw)) raw = raw.replace(/\/MEMORY\.md$/i, "");
       return raw;
     }
     function renderVault() {
-      const path = vaultPath();
-      ruleEl.textContent = ruleTemplate.split("<VAULT>").join(path || "<VAULT>");
-      treeEl.textContent = (path || "my-memory") + "/\n  MEMORY.md";
+      const path = vaultPath() || "D:/my-memory";
+      ruleEl.textContent = ruleTemplate.split("<VAULT>").join(path);
+      treeEl.textContent = path + "/\n  MEMORY.md";
+      probeEl.textContent = probeTemplate.split("<VAULT>").join(path);
     }
     vaultEl.addEventListener("input", renderVault);
+    renderVault();
     document.getElementById("copy").onclick = function () { copyText("rule", this, "Copied"); };
     document.getElementById("copy-door").onclick = function () { copyText("door", this, "Copied"); };
+    document.getElementById("copy-probe").onclick = function () { copyText("probe", this, "Copied"); };
     document.getElementById("copy-share").onclick = function () { copyText("share-line", this, "Copied"); };
   </script>
 </body>

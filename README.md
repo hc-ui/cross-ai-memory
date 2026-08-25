@@ -79,9 +79,10 @@ One topic, one note. Current user statements beat old notes. Verified facts beat
 
 ## Tonight, three steps
 
-1. Make a local folder and save [MEMORY.en.md](https://hc-ui.github.io/cross-ai-memory/MEMORY.en.md) as `MEMORY.md`.
-2. Type that path on the [public page](https://hc-ui.github.io/cross-ai-memory/en.html) and copy the filled rule.
+1. Make a local folder. Save [MEMORY.en.md](https://hc-ui.github.io/cross-ai-memory/MEMORY.en.md) as UTF-8 `MEMORY.md`, not `.txt`.
+2. Change that path on the [public page](https://hc-ui.github.io/cross-ai-memory/en.html) and copy the filled rule.
 3. Paste the same block into Cursor user rules, Claude `CLAUDE.md`, and Codex `AGENTS.md`.
+4. In a new chat, paste the probe. It should read “Start here”.
 
 When a durable fact should land, say `记住` or `approve write`. It should propose first. Short version: [docs/tonight.md](docs/tonight.md)
 

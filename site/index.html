@@ -92,12 +92,19 @@
     .tonight code { font-size: 14px; }
     .opt { color: var(--muted); font-size: 15px; }
     .opt code { font-size: 13px; overflow-wrap: anywhere; }
+    .kit {
+      background: var(--paper);
+      border: 1px solid var(--ink);
+      padding: 8px 22px 18px;
+      margin: 28px 0 8px;
+    }
+    .kit > h2 { margin-top: 28px; }
     .pathbox { display: grid; gap: 6px; margin: 8px 0 16px; }
     .pathbox span { font-size: 13px; letter-spacing: .08em; color: var(--muted); }
     .pathbox input {
       font: 16px/1.4 ui-monospace, Consolas, monospace;
       border: 1px solid var(--ink);
-      background: var(--paper);
+      background: #fff;
       color: var(--ink);
       padding: 12px 14px;
       width: 100%;
@@ -130,16 +137,12 @@
       <li><b>03</b>AI 可以提案。你没点头，它不能写。记错的东西不许变成“事实”。</li>
     </ol>
 
+    <div class="kit">
     <h2 id="tonight">今晚就能抄走</h2>
-    <p>不用装命令行。先有一个文件夹，再让每一家 AI 读它。</p>
-    <label class="pathbox">
-      <span>你的文件夹路径</span>
-      <input id="vault" type="text" placeholder="D:/my-memory" spellcheck="false" autocomplete="off" inputmode="text">
-    </label>
-    <pre id="tree">my-memory/
-  MEMORY.md</pre>
+    <p>不用装命令行。先建文件夹，再让每一家 AI 读它。</p>
 
     <h3>1. 把这篇存成 MEMORY.md</h3>
+    <p>资源管理器新建文件夹。记事本粘贴后：另存为 → 文件名 <code>MEMORY.md</code> → 编码 UTF-8。不要存成 <code>.txt</code>，不要用 Word。若变成 <code>MEMORY.md.txt</code>，先勾选「文件扩展名」再删掉 <code>.txt</code>。</p>
     <pre id="door"># 从这里进
 
 这是共用记忆的入口。自包含问题不要打开这本库。
@@ -153,8 +156,14 @@
       <a class="btn ghost" href="MEMORY.md" download="MEMORY.md">下载这一篇</a>
     </p>
 
-    <h3>2. 填路径，再复制规则</h3>
-    <p>上面一填，<code>&lt;VAULT&gt;</code> 会换成你的文件夹。没填就原样复制，自己改。</p>
+    <h3>2. 改成你的路径，再复制规则</h3>
+    <label class="pathbox">
+      <span>你刚建的文件夹</span>
+      <input id="vault" type="text" value="D:/my-memory" spellcheck="false" autocomplete="off" inputmode="text">
+    </label>
+    <pre id="tree">D:/my-memory/
+  MEMORY.md</pre>
+    <p>先改成真实路径再复制。反斜杠会自动收成 <code>/</code>。</p>
     <pre id="rule">长期记忆文件夹：&lt;VAULT&gt;
 入口：&lt;VAULT&gt;/MEMORY.md
 先读入口，再只打开索引点名的那几篇。
@@ -185,8 +194,17 @@
         <p>写进 Codex 的 <code>AGENTS.md</code>。每周扫描也读同一本。</p>
       </article>
     </div>
+    <p>Grok 或别的产品：同一段贴进用户规则或系统提示。</p>
+
+    <h3>4. 新窗口贴这句，看它会不会打开文件</h3>
+    <pre id="probe">打开 D:/my-memory/MEMORY.md，告诉我第一行标题。不要猜，不要问我文件夹在哪。</pre>
+    <p class="row">
+      <button type="button" id="copy-probe">复制这句试探</button>
+    </p>
+    <p>它应该读到「从这里进」。若它还问路径，规则没贴上，或文件名其实是 <code>MEMORY.md.txt</code>。</p>
     <p>下次要落长期事实，说「记住」或「同意写入」。它应该先提案，你点头再写。</p>
     <p class="opt">想要完整空壳或林可那本，再装命令行：<code>pip install git+https://github.com/hc-ui/cross-ai-memory.git</code>，然后 <code>aimem init ./my-memory</code> 或 <code>aimem init --demo ./look</code>。</p>
+    </div>
 
     <h2>同一天，差一本笔记</h2>
     <p>林可周一刚定过：新软件放 <code>E:/Apps</code>。周三换 Claude，现场会变成这样——</p>
@@ -266,21 +284,26 @@
     }
     const ruleEl = document.getElementById("rule");
     const treeEl = document.getElementById("tree");
+    const probeEl = document.getElementById("probe");
     const vaultEl = document.getElementById("vault");
     const ruleTemplate = ruleEl.innerText;
+    const probeTemplate = "打开 <VAULT>/MEMORY.md，告诉我第一行标题。不要猜，不要问我文件夹在哪。";
     function vaultPath() {
       let raw = vaultEl.value.trim().replace(/^["']|["']$/g, "").replace(/\\/g, "/").replace(/\/+$/, "");
       if (/\/MEMORY\.md$/i.test(raw)) raw = raw.replace(/\/MEMORY\.md$/i, "");
       return raw;
     }
     function renderVault() {
-      const path = vaultPath();
-      ruleEl.textContent = ruleTemplate.split("<VAULT>").join(path || "<VAULT>");
-      treeEl.textContent = (path || "my-memory") + "/\n  MEMORY.md";
+      const path = vaultPath() || "D:/my-memory";
+      ruleEl.textContent = ruleTemplate.split("<VAULT>").join(path);
+      treeEl.textContent = path + "/\n  MEMORY.md";
+      probeEl.textContent = probeTemplate.split("<VAULT>").join(path);
     }
     vaultEl.addEventListener("input", renderVault);
+    renderVault();
     document.getElementById("copy").onclick = function () { copyText("rule", this, "已复制"); };
     document.getElementById("copy-door").onclick = function () { copyText("door", this, "已复制"); };
+    document.getElementById("copy-probe").onclick = function () { copyText("probe", this, "已复制"); };
     document.getElementById("copy-share").onclick = function () { copyText("share-line", this, "已复制"); };
   </script>
 </body>

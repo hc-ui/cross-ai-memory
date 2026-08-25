@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.5 - 2026-08-26
+
+- Tonight now says how to save `MEMORY.md` on Windows, and ships a probe sentence that should open that file.
+- The path box starts as `D:/my-memory`, so copying the rule never leaves a raw `<VAULT>`.
+
 ## 0.3.4 - 2026-08-26
 
 - The public page fills `<VAULT>` from a path box, so the copied rule already has a folder.
