@@ -1,0 +1,5 @@
+.obsidian/
+.aimem-inbox/
+*.bundle
+.DS_Store
+Thumbs.db
