@@ -95,7 +95,7 @@ aimem check examples/lin-ke
 aimem init --demo ./look
 ```
 
-![aimem check examples/lin-ke → 11 篇笔记，ok](assets/check.svg)
+![aimem check examples/lin-ke → 12 篇笔记，ok](assets/check.svg)
 
 `aimem init` 复制空壳。`aimem init --demo` 复制林可那本正在用的。
 

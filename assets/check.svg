@@ -2,7 +2,7 @@
   <rect width="960" height="220" fill="#0d1117"/>
   <text x="28" y="36" font-family="Consolas, Liberation Mono, monospace" font-size="14" fill="#8b949e">$ aimem check examples/lin-ke</text>
   <text x="28" y="64" font-family="Consolas, Liberation Mono, monospace" font-size="14" fill="#c9d1d9">vault: examples/lin-ke</text>
-  <text x="28" y="88" font-family="Consolas, Liberation Mono, monospace" font-size="14" fill="#c9d1d9">notes: 11</text>
+  <text x="28" y="88" font-family="Consolas, Liberation Mono, monospace" font-size="14" fill="#c9d1d9">notes: 12</text>
   <text x="28" y="112" font-family="Consolas, Liberation Mono, monospace" font-size="14" fill="#3fb950">ok</text>
   <text x="28" y="156" font-family="Consolas, Liberation Mono, monospace" font-size="14" fill="#8b949e">$ aimem tour</text>
   <text x="28" y="184" font-family="Consolas, Liberation Mono, monospace" font-size="14" fill="#c9d1d9">Monday write · Wednesday read · Sunday propose</text>

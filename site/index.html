@@ -29,7 +29,7 @@
     }
     a { color: var(--accent); }
     header, main, footer { width: min(880px, calc(100% - 40px)); margin: 0 auto; }
-    header { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0 8px; }
+    header { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0 8px; flex-wrap: wrap; gap: 8px 0; }
     nav { font-size: 15px; }
     nav a { color: var(--muted); text-decoration: none; margin-left: 16px; }
     h1 {
@@ -109,6 +109,14 @@
       padding: 12px 14px;
       width: 100%;
     }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 28px 0 8px; padding: 0; list-style: none; }
+    @media (min-width: 720px) { .stats { grid-template-columns: 1fr 1fr 1fr 1fr; } }
+    .stats li { background: var(--paper); border: 1px solid var(--line); padding: 14px 16px; }
+    .stats b { display: block; font-size: 22px; line-height: 1.2; margin-bottom: 4px; }
+    .stats span { font-size: 13px; color: var(--muted); }
+    table { width: 100%; border-collapse: collapse; background: var(--paper); font-size: 15px; }
+    th, td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+    th { font-size: 13px; color: var(--muted); font-weight: 600; }
     footer { color: var(--muted); font-size: 14px; padding: 48px 0 36px; }
   </style>
 </head>
@@ -116,6 +124,9 @@
   <header>
     <strong>cross-ai-memory</strong>
     <nav>
+      <a href="#tonight">今晚</a>
+      <a href="#specimen">标本</a>
+      <a href="#gates">门闩</a>
       <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/README.zh-CN.md">GitHub</a>
       <a href="en.html">English</a>
     </nav>
@@ -129,6 +140,12 @@
       <button type="button" id="copy-share">复制分享语</button>
       <a class="btn ghost" href="#tonight">今晚就能抄走</a>
     </p>
+    <ul class="stats">
+      <li><b>12</b><span>篇林可标本笔记，都能从 MEMORY.md 走到</span></li>
+      <li><b>0</b><span>运行时依赖。没有 API key，不上传</span></li>
+      <li><b>人</b><span>批准才写入。提案、驳回、撤回都留在纸上</span></li>
+      <li><b>MIT</b><span>方法写在 SPEC 里，别人能重做</span></li>
+    </ul>
 
     <h2>方法就三句</h2>
     <ol class="rules">
@@ -266,12 +283,86 @@
       </div>
     </div>
 
+    <h2 id="specimen">林可整本库，就这些文件</h2>
+    <p>不是空壳。12 篇，每篇有来源、置信、时效。自包含问题不准进库。问到旧决定，从 MEMORY.md 进，再只打开索引点名的那几篇。</p>
+    <pre>lin-ke/
+  MEMORY.md                 入口
+  shared/INDEX.md           索引，不是一堆聊天
+  shared/GOVERNANCE.md      怎么读、怎么写
+  shared/install-path.md    周一写下的长期事实
+  shared/preferences.md     希望每家 AI 怎么说话
+  shared/proxy.md           会过期的快照
+  shared/environment.md     现在在用哪几家
+  shared/CHANGELOG.md       只记被批准的写入
+  work/leafbox.md           写错过、又改回来
+  proposals/week-2026-08-24.md  周日清单，正文没动</pre>
+
+    <h2>写错过一次，改得回来</h2>
+    <p>厂商脑子里的错记忆，通常改不干净。写在笔记里的，可以改，还可以把否过的留在原页，免得下场 AI 再捡回来。</p>
+    <div class="note">
+      <div class="meta">work/leafbox.md · 8 月 20 日写错 · 8 月 22 日改回</div>
+      <h3>结论</h3>
+      <p>标准输出用 UTF-8。不要输出 GBK。Windows 控制台乱码是控制台的事，不是改工具的理由。</p>
+      <h3>已经否过的</h3>
+      <p>Windows 用 GBK。新对话再提，指到这里。没有新证据，就不要重开。</p>
+      <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/work/leafbox.md">在仓库里打开原文</a>
+    </div>
+
+    <h2>许可记在这张表，diff 交给 Git</h2>
+    <p>每周提案本身不是写入。没有 <code>同意写入</code>，正文一篇不能动。</p>
+    <table>
+      <thead>
+        <tr><th>ID</th><th>日期</th><th>批准</th><th>改了什么</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>MEM-20260818-01</td><td>08-18</td><td><code>同意写入</code></td><td>说话方式</td></tr>
+        <tr><td>MEM-20260820-01</td><td>08-20</td><td><code>同意写入</code></td><td>leafbox 第一次选 GBK</td></tr>
+        <tr><td>MEM-20260822-01</td><td>08-22</td><td><code>同意写入</code></td><td>leafbox 改回 UTF-8</td></tr>
+        <tr><td>MEM-20260824-01</td><td>08-24</td><td><code>同意写入</code></td><td>安装路径 E:/Apps</td></tr>
+      </tbody>
+    </table>
+    <p><a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/shared/CHANGELOG.md">完整变更日志</a></p>
+
+    <h2 id="gates">写入门闩</h2>
+    <p>方法写在 <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/SPEC.md">SPEC.md</a>。实现可以换，门闩不该漂。</p>
+    <ol class="rules">
+      <li><b>读</b>自包含问题不准进库。否则先 MEMORY.md，再索引，再最少的几篇。默认深度 standard，不许通读。</li>
+      <li><b>写</b>当前这句话里要有「记住 / 同意写入」。先提案，一个主题一篇正文。改之前记哈希，文件被人改过就停。</li>
+      <li><b>核</b>写完跑 <code>aimem check</code>。本地提交用批次号。推送要另说「同意推送」。</li>
+      <li><b>采</b>采集器只扫本地会话、出清单。<code>commit</code> 只推进检查点，不是 git，不是改正文。</li>
+    </ol>
+    <p>冲突：你现在说的，大于旧笔记。刚核过的机器事实，大于模型自己记得的。两边打架就两句都留着，不许悄悄覆盖。</p>
+
+    <h2>命令行会拦什么</h2>
+    <p>零依赖。它查断链、重复标题、过期快照、没编进索引、从 MEMORY.md 走不到的篇、以及疑似 Token。</p>
+    <figure>
+      <img src="assets/check.svg" alt="aimem check examples/lin-ke：12 篇笔记，ok">
+    </figure>
+    <pre>pip install git+https://github.com/hc-ui/cross-ai-memory.git
+aimem tour
+aimem rule
+aimem check examples/lin-ke
+aimem collect scan</pre>
+
+    <h2>跟「让 AI 自己记」差在哪</h2>
+    <table>
+      <thead>
+        <tr><th></th><th>厂商记忆</th><th>向量自动记</th><th>这本笔记</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>你能打开吗</th><td>通常不能</td><td>一块块切片</td><td>能打开、能搜、能 diff</td></tr>
+        <tr><th>写错了</th><td>难改干净</td><td>下周当成事实</td><td>改一篇，否过的留在原页</td></tr>
+        <tr><th>跨产品</th><td>各记各的</td><td>各嵌各的</td><td>同一个文件夹</td></tr>
+        <tr><th>谁决定写入</th><td>模型</td><td>模型</td><td>你。没点头就不是事实</td></tr>
+      </tbody>
+    </table>
+
     <h2>为什么现在值得做</h2>
     <p>用 AI 的人会越来越多。一个人同时用两家、三家，也会越来越普通。厂商不会帮你在 Cursor 和 Claude 之间同步「上周拍板的那件事」。你需要一本自己的记忆，不是六本厂商记忆。</p>
     <p>自动记忆失败得很危险：它写错了，还接着用。这套方法失败得很无聊：你忘了写一条。</p>
   </main>
   <footer>
-    MIT · 林可是虚构人物 · <a href="https://github.com/hc-ui/cross-ai-memory">hc-ui/cross-ai-memory</a>
+    MIT · 林可是虚构人物 · 方法在 <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/SPEC.md">SPEC.md</a> · <a href="https://github.com/hc-ui/cross-ai-memory">hc-ui/cross-ai-memory</a>
   </footer>
   <script>
     function copyText(id, btn, ok) {

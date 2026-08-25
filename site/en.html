@@ -23,7 +23,7 @@
     body { margin: 0; color: var(--ink); background: var(--bg); font: 18px/1.65 Georgia, "Iwanami Text", serif; }
     a { color: var(--accent); }
     header, main, footer { width: min(880px, calc(100% - 40px)); margin: 0 auto; }
-    header { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0 8px; }
+    header { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0 8px; flex-wrap: wrap; gap: 8px 0; }
     nav { font-size: 15px; font-family: ui-sans-serif, "Segoe UI", sans-serif; }
     nav a { color: var(--muted); text-decoration: none; margin-left: 16px; }
     h1 {
@@ -95,6 +95,14 @@
       padding: 12px 14px;
       width: 100%;
     }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 28px 0 8px; padding: 0; list-style: none; font-family: ui-sans-serif, "Segoe UI", sans-serif; }
+    @media (min-width: 720px) { .stats { grid-template-columns: 1fr 1fr 1fr 1fr; } }
+    .stats li { background: var(--paper); border: 1px solid var(--line); padding: 14px 16px; }
+    .stats b { display: block; font-size: 22px; line-height: 1.2; margin-bottom: 4px; }
+    .stats span { font-size: 13px; color: var(--muted); }
+    table { width: 100%; border-collapse: collapse; background: var(--paper); font-size: 15px; }
+    th, td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+    th { font-size: 13px; color: var(--muted); font-weight: 600; font-family: ui-sans-serif, sans-serif; }
     footer { color: var(--muted); font-size: 14px; padding: 48px 0 36px; font-family: ui-sans-serif, sans-serif; }
   </style>
 </head>
@@ -102,6 +110,9 @@
   <header>
     <strong>cross-ai-memory</strong>
     <nav>
+      <a href="#tonight">Tonight</a>
+      <a href="#specimen">Specimen</a>
+      <a href="#gates">Gates</a>
       <a href="https://github.com/hc-ui/cross-ai-memory">GitHub</a>
       <a href="index.html">中文</a>
     </nav>
@@ -115,6 +126,12 @@
       <button type="button" id="copy-share">Copy share text</button>
       <a class="btn ghost" href="#tonight">Tonight’s three steps</a>
     </p>
+    <ul class="stats">
+      <li><b>12</b><span>notes in the Lin Ke specimen, all reachable from MEMORY.md</span></li>
+      <li><b>0</b><span>runtime dependencies. No API key. Nothing is uploaded</span></li>
+      <li><b>You</b><span>approve the write. Proposals, rejections, and reversals stay on paper</span></li>
+      <li><b>MIT</b><span>The method lives in the SPEC. Someone else can rebuild it</span></li>
+    </ul>
 
     <h2>Three sentences</h2>
     <ol class="rules">
@@ -243,12 +260,86 @@ Never store tokens, passwords, or cookies.</pre>
       <div class="cand"><span class="pill wait">CAND-03 · still open</span><div>leafbox man page tone. No edit until 同意写入.</div></div>
     </div>
 
+    <h2 id="specimen">The whole Lin Ke folder</h2>
+    <p>Not an empty shell. Twelve notes, each with source, confidence, and a date. Self-contained questions stay out. Old decisions start at MEMORY.md, then only the notes the index names.</p>
+    <pre>lin-ke/
+  MEMORY.md                 entry
+  shared/INDEX.md           an index, not a chat dump
+  shared/GOVERNANCE.md      how to read, how to write
+  shared/install-path.md    the Monday fact
+  shared/preferences.md     how every AI should talk
+  shared/proxy.md           a snapshot that expires
+  shared/environment.md     which AIs are in use
+  shared/CHANGELOG.md       approved writes only
+  work/leafbox.md           written wrong, then reversed
+  proposals/week-2026-08-24.md  Sunday list; no silent edit</pre>
+
+    <h2>A wrong note that could be reversed</h2>
+    <p>Wrong memory in a vendor brain is hard to clean. Wrong memory in a file can be edited, and the rejection stays on the page so the next chat cannot revive it.</p>
+    <div class="note">
+      <div class="meta">work/leafbox.md · wrong on Aug 20 · reversed on Aug 22</div>
+      <h3>Conclusion</h3>
+      <p>Stdout is UTF-8. Do not emit GBK. A broken Windows console is not a reason to change the tool.</p>
+      <h3>Already rejected</h3>
+      <p>GBK on Windows. If a new chat raises it, point here. No new evidence, do not reopen.</p>
+      <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/work/leafbox.md">Open the file in the repo</a>
+    </div>
+
+    <h2>Permission lives in this table. Git stores the diff</h2>
+    <p>A weekly proposal is not a write. Without <code>同意写入</code>, a canonical note does not move.</p>
+    <table>
+      <thead>
+        <tr><th>ID</th><th>Date</th><th>Approval</th><th>What changed</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>MEM-20260818-01</td><td>08-18</td><td><code>同意写入</code></td><td>tone</td></tr>
+        <tr><td>MEM-20260820-01</td><td>08-20</td><td><code>同意写入</code></td><td>leafbox first picked GBK</td></tr>
+        <tr><td>MEM-20260822-01</td><td>08-22</td><td><code>同意写入</code></td><td>leafbox back to UTF-8</td></tr>
+        <tr><td>MEM-20260824-01</td><td>08-24</td><td><code>同意写入</code></td><td>install path E:/Apps</td></tr>
+      </tbody>
+    </table>
+    <p><a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/shared/CHANGELOG.md">Full changelog</a></p>
+
+    <h2 id="gates">The write gates</h2>
+    <p>The method is in <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/SPEC.md">SPEC.md</a>. Implementations may change. The gates should not.</p>
+    <ol class="rules">
+      <li><b>Read</b>Self-contained questions skip the vault. Otherwise MEMORY.md, then the index, then the fewest notes. Default depth is standard. No full scan.</li>
+      <li><b>Write</b>The current message must say 记住 / approve write. Propose first. One note per topic. Hash the file before editing; stop if it changed.</li>
+      <li><b>Check</b>After a write, run <code>aimem check</code>. Local commits use the batch id. Push needs a separate 同意推送.</li>
+      <li><b>Collect</b>The collector only reads local sessions and writes a list. Its <code>commit</code> advances a checkpoint. Not git. Not a vault edit.</li>
+    </ol>
+    <p>Conflicts: what you say now beats an old note. A fact just verified beats what a model remembers. Keep both sentences when they disagree. Do not silently overwrite.</p>
+
+    <h2>What the CLI blocks</h2>
+    <p>Zero dependencies. It flags broken links, duplicate titles, expired snapshots, unindexed notes, notes unreachable from MEMORY.md, and secret-like strings.</p>
+    <figure>
+      <img src="assets/check.svg" alt="aimem check examples/lin-ke: 12 notes, ok">
+    </figure>
+    <pre>pip install git+https://github.com/hc-ui/cross-ai-memory.git
+aimem tour
+aimem rule
+aimem check examples/lin-ke
+aimem collect scan</pre>
+
+    <h2>Why not “just let the AI remember”</h2>
+    <table>
+      <thead>
+        <tr><th></th><th>Vendor memory</th><th>Auto-embed</th><th>This notebook</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Can you open it?</th><td>Usually no</td><td>Chunks</td><td>Open, search, diff</td></tr>
+        <tr><th>If it is wrong</th><td>Hard to clean</td><td>Becomes next week’s fact</td><td>Edit one note; keep the rejection</td></tr>
+        <tr><th>Across products</th><td>Each keeps its own</td><td>Each embeds its own</td><td>One folder</td></tr>
+        <tr><th>Who writes</th><td>The model</td><td>The model</td><td>You. No nod, not a fact</td></tr>
+      </tbody>
+    </table>
+
     <h2>Why this is worth doing now</h2>
     <p>More people will use AI. More people will use more than one. Vendors will not sync last week’s decision from Cursor to Claude. You need one notebook of your own, not six vendor brains.</p>
     <p>Auto-memory fails dangerously: it writes the wrong note, then defends it. This method fails boringly: you forget to write a note.</p>
   </main>
   <footer>
-    MIT · Lin Ke is fictional · <a href="https://github.com/hc-ui/cross-ai-memory">hc-ui/cross-ai-memory</a>
+    MIT · Lin Ke is fictional · Method in <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/SPEC.md">SPEC.md</a> · <a href="https://github.com/hc-ui/cross-ai-memory">hc-ui/cross-ai-memory</a>
   </footer>
   <script>
     function copyText(id, btn, ok) {

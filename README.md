@@ -96,7 +96,7 @@ aimem check examples/lin-ke
 aimem init --demo ./look
 ```
 
-![aimem check examples/lin-ke → 11 notes, ok](assets/check.svg)
+![aimem check examples/lin-ke → 12 notes, ok](assets/check.svg)
 
 `aimem init` copies an empty shell. `aimem init --demo` copies Lin Ke's notebook.
 

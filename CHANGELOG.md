@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.6 - 2026-08-26
+
+- The public page now shows the specimen tree, the leafbox reversal, the permission ledger, the write gates, and a comparison with auto-memory.
+
 ## 0.3.5 - 2026-08-26
 
 - Tonight now says how to save `MEMORY.md` on Windows, and ships a probe sentence that should open that file.

@@ -27,7 +27,7 @@ jobs:
           mkdir -p public/assets
           cp site/index.html site/en.html site/MEMORY.md site/MEMORY.en.md public/
           cp assets/idea.svg assets/idea.zh.svg assets/week.svg assets/week.zh.svg \
-             assets/chat.svg assets/chat.zh.svg assets/favicon.svg assets/og.png public/assets/
+             assets/chat.svg assets/chat.zh.svg assets/check.svg assets/favicon.svg assets/og.png public/assets/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
