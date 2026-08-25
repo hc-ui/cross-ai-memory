@@ -36,6 +36,7 @@
     .lead { font-size: 20px; color: var(--muted); }
     .punch { font-size: 22px; margin: 24px 0 8px; }
     h2 { margin: 52px 0 14px; font-size: 26px; }
+    h3 { margin: 28px 0 10px; font-size: 20px; }
     .rules { display: grid; gap: 12px; padding: 0; list-style: none; }
     .rules li { background: var(--paper); border: 1px solid var(--line); padding: 16px 18px; }
     .rules b { display: block; font-size: 13px; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; font-family: ui-sans-serif, sans-serif; }
@@ -75,6 +76,8 @@
       font-family: ui-sans-serif, sans-serif;
     }
     .tonight b { display: block; margin-bottom: 4px; }
+    .opt { color: var(--muted); font-size: 15px; font-family: ui-sans-serif, sans-serif; }
+    .opt code { font-size: 13px; overflow-wrap: anywhere; }
     footer { color: var(--muted); font-size: 14px; padding: 48px 0 36px; font-family: ui-sans-serif, sans-serif; }
   </style>
 </head>
@@ -103,9 +106,29 @@
       <li><b>03</b>An AI may propose. It does not write until you say so.</li>
     </ol>
 
-    <h2>Steal it without installing</h2>
-    <pre id="rule">Long-term memory is a local folder of markdown notes.
-Start at MEMORY.md. Then open only the notes the index names.
+    <h2 id="tonight">Steal it tonight</h2>
+    <p>No install. Make a folder, then point every AI at it.</p>
+    <pre>my-memory/
+  MEMORY.md</pre>
+
+    <h3>1. Save this as MEMORY.md</h3>
+    <pre id="door"># Start here
+
+This is the only entry. Do not open the rest of the folder for a self-contained question.
+
+When an old decision matters, read this page, then only the notes named below.
+There are no other notes yet. After the first durable fact is written, add a link here.
+
+Do not write unless I say 记住 / approve write.</pre>
+    <p class="row">
+      <button type="button" id="copy-door">Copy MEMORY.md</button>
+      <a class="btn ghost" href="MEMORY.en.md">Download this file</a>
+    </p>
+
+    <h3>2. Copy the rule, then replace &lt;VAULT&gt;</h3>
+    <pre id="rule">Long-term memory folder: &lt;VAULT&gt;
+Entry: &lt;VAULT&gt;/MEMORY.md
+Start at the entry. Then open only the notes the index names.
 Do not read the whole folder.
 Do not write a note unless I explicitly say:
 记住 / remember / 同意写入 / approve write.
@@ -116,13 +139,9 @@ Never store tokens, passwords, or cookies.</pre>
       <a class="btn ghost" href="https://github.com/hc-ui/cross-ai-memory">Read the full method on GitHub</a>
     </p>
 
-    <h2 id="tonight">Tonight, three steps</h2>
-    <ol class="tonight">
-      <li><b>Copy the rule above</b>Use “Copy this”. Leave the folder path for the next step.</li>
-      <li><b>Make a local folder</b>Empty shell: <code>aimem init ./my-memory</code><br>Or copy the demo: <code>aimem init --demo ./look</code></li>
-      <li><b>Paste it into every AI you use</b>Point the rule at that folder. When a durable fact should land, say 记住 or approve write.</li>
-    </ol>
-    <p><a href="https://github.com/hc-ui/cross-ai-memory/blob/main/docs/tonight.md">Open these three steps alone</a></p>
+    <h3>3. Paste it into every AI you use</h3>
+    <p>When a durable fact should land, say 记住 or approve write. It should propose first.</p>
+    <p class="opt">Want the empty shell or Lin Ke’s notebook later? <code>pip install git+https://github.com/hc-ui/cross-ai-memory.git</code>, then <code>aimem init ./my-memory</code> or <code>aimem init --demo ./look</code>.</p>
 
     <h2>The same Wednesday</h2>
     <p>Monday, Lin Ke decided installers go to <code>E:/Apps</code>. Wednesday, Claude is a different product.</p>
@@ -188,6 +207,7 @@ Never store tokens, passwords, or cookies.</pre>
       }).catch(function () { btn.textContent = "Select and copy"; });
     }
     document.getElementById("copy").onclick = function () { copyText("rule", this, "Copied"); };
+    document.getElementById("copy-door").onclick = function () { copyText("door", this, "Copied"); };
     document.getElementById("copy-share").onclick = function () { copyText("share-line", this, "Copied"); };
   </script>
 </body>

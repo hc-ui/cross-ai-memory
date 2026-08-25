@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.3 - 2026-08-26
+
+- Tonight on the public page is a folder plus MEMORY.md, not a CLI install.
+- The paste rule now names `<VAULT>`, so “change the path” has a path to change.
+
 ## 0.3.2 - 2026-08-26
 
 - Landing page wraps the title on a phone, leads with tonight’s three steps, and sends Chinese readers to the Chinese README.

@@ -1,9 +1,17 @@
-# Tonight, three steps
+# Steal it tonight
 
-You do not need to read the whole repository.
+No install. You do not need to read the whole repository.
 
-1. Open the [public page](https://hc-ui.github.io/cross-ai-memory/en.html) and copy the “steal it without installing” rule.
-2. Make a local folder. Empty shell: `aimem init ./my-memory`. To look at a working notebook: `aimem init --demo ./look`.
-3. Paste the rule into Cursor / Claude / Codex, and point `<VAULT>` at that folder.
+1. Make a local folder and save [MEMORY.en.md](https://hc-ui.github.io/cross-ai-memory/MEMORY.en.md) as `MEMORY.md`.
+2. Copy the rule on the [public page](https://hc-ui.github.io/cross-ai-memory/en.html) and replace `<VAULT>` with that folder.
+3. Paste it into Cursor / Claude / Codex.
 
-The next time a durable fact should land, say `记住` or `approve write`. It should propose first. You nod, then it writes.
+When a durable fact should land, say `记住` or `approve write`. It should propose first. You nod, then it writes.
+
+Want the empty shell or Lin Ke’s notebook later:
+
+```bash
+pip install git+https://github.com/hc-ui/cross-ai-memory.git
+aimem init ./my-memory
+aimem init --demo ./look
+```

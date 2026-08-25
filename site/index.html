@@ -42,6 +42,7 @@
     .lead { font-size: 20px; color: var(--muted); }
     .punch { font-size: 22px; margin: 24px 0 8px; }
     h2 { margin: 52px 0 14px; font-size: 26px; }
+    h3 { margin: 28px 0 10px; font-size: 20px; }
     .rules { display: grid; gap: 12px; padding: 0; list-style: none; }
     .rules li { background: var(--paper); border: 1px solid var(--line); padding: 16px 18px; }
     .rules b { display: block; font-size: 13px; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; }
@@ -89,6 +90,8 @@
     }
     .tonight b { display: block; margin-bottom: 4px; }
     .tonight code { font-size: 14px; }
+    .opt { color: var(--muted); font-size: 15px; }
+    .opt code { font-size: 13px; overflow-wrap: anywhere; }
     footer { color: var(--muted); font-size: 14px; padding: 48px 0 36px; }
   </style>
 </head>
@@ -107,7 +110,7 @@
     <p class="share" id="share-line">一本笔记给所有 AI 看。模型只能提案，你点头才写入。<br>https://hc-ui.github.io/cross-ai-memory/</p>
     <p class="row">
       <button type="button" id="copy-share">复制分享语</button>
-      <a class="btn ghost" href="#tonight">今晚三步</a>
+      <a class="btn ghost" href="#tonight">今晚就能抄走</a>
     </p>
 
     <h2>方法就三句</h2>
@@ -117,10 +120,29 @@
       <li><b>03</b>AI 可以提案。你没点头，它不能写。记错的东西不许变成“事实”。</li>
     </ol>
 
-    <h2>不装也能抄</h2>
-    <p>把这段贴进每一家 AI 的规则，改掉文件夹路径。</p>
-    <pre id="rule">长期记忆是一个本地 Markdown 文件夹。
-先读 MEMORY.md，再只打开索引点名的那几篇。
+    <h2 id="tonight">今晚就能抄走</h2>
+    <p>不用装命令行。先有一个文件夹，再让每一家 AI 读它。</p>
+    <pre>my-memory/
+  MEMORY.md</pre>
+
+    <h3>1. 把这篇存成 MEMORY.md</h3>
+    <pre id="door"># 从这里进
+
+这是共用记忆的入口。自包含问题不要打开这本库。
+
+问到旧决定时，先读本页，再只打开下面点名的笔记。
+还没有分篇。第一篇长期事实写好后，在这里加一行链接。
+
+没说「记住 / 同意写入」，不要写。</pre>
+    <p class="row">
+      <button type="button" id="copy-door">复制 MEMORY.md</button>
+      <a class="btn ghost" href="MEMORY.md">下载这一篇</a>
+    </p>
+
+    <h3>2. 复制规则，把 &lt;VAULT&gt; 换成这个文件夹</h3>
+    <pre id="rule">长期记忆文件夹：&lt;VAULT&gt;
+入口：&lt;VAULT&gt;/MEMORY.md
+先读入口，再只打开索引点名的那几篇。
 不要把整个文件夹读完。
 除非我明确说「记住 / remember / 同意写入 / approve write」，不要写笔记。
 先提最小改动。
@@ -130,13 +152,9 @@
       <a class="btn ghost" href="https://github.com/hc-ui/cross-ai-memory/blob/main/README.zh-CN.md">去 GitHub 看完整方法</a>
     </p>
 
-    <h2 id="tonight">今晚三步</h2>
-    <ol class="tonight">
-      <li><b>复制上面那段规则</b>点「复制这段」。路径先不用改，下一步再换。</li>
-      <li><b>建一个本地文件夹</b>空壳：<code>aimem init ./my-memory</code><br>想对着看：<code>aimem init --demo ./look</code></li>
-      <li><b>贴进你用的每一家 AI</b>把规则里的文件夹换成这一步建的。下次要落长期事实，说「记住」或「同意写入」。</li>
-    </ol>
-    <p><a href="https://github.com/hc-ui/cross-ai-memory/blob/main/docs/tonight.zh-CN.md">把这三步单独打开</a></p>
+    <h3>3. 贴进你用的每一家 AI</h3>
+    <p>下次要落长期事实，说「记住」或「同意写入」。它应该先提案，你点头再写。</p>
+    <p class="opt">想要完整空壳或林可那本，再装命令行：<code>pip install git+https://github.com/hc-ui/cross-ai-memory.git</code>，然后 <code>aimem init ./my-memory</code> 或 <code>aimem init --demo ./look</code>。</p>
 
     <h2>同一天，差一本笔记</h2>
     <p>林可周一刚定过：新软件放 <code>E:/Apps</code>。周三换 Claude，现场会变成这样——</p>
@@ -215,6 +233,7 @@
       });
     }
     document.getElementById("copy").onclick = function () { copyText("rule", this, "已复制"); };
+    document.getElementById("copy-door").onclick = function () { copyText("door", this, "已复制"); };
     document.getElementById("copy-share").onclick = function () { copyText("share-line", this, "已复制"); };
   </script>
 </body>

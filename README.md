@@ -62,11 +62,12 @@ In the demo, Codex suggested "rewrite the README to get stars". Lin Ke rejected 
 
 ## Steal it without installing
 
-Paste this into every AI's rule file. Change the folder path.
+Make a folder and save [MEMORY.en.md](https://hc-ui.github.io/cross-ai-memory/MEMORY.en.md) as `MEMORY.md`. Paste this into every AI. Replace `<VAULT>`.
 
 ```text
-Long-term memory is a local folder of markdown notes.
-Start at MEMORY.md. Then open only the notes the index names.
+Long-term memory folder: <VAULT>
+Entry: <VAULT>/MEMORY.md
+Start at the entry. Then open only the notes the index names.
 Do not read the whole folder.
 Do not write a note unless I explicitly say:
 记住 / remember / 同意写入 / approve write.
@@ -78,9 +79,9 @@ One topic, one note. Current user statements beat old notes. Verified facts beat
 
 ## Tonight, three steps
 
-1. Open the [public page](https://hc-ui.github.io/cross-ai-memory/en.html) and copy the rule above.
-2. Make a local folder. Empty shell: `aimem init ./my-memory`. Working demo: `aimem init --demo ./look`.
-3. Paste the rule into Cursor / Claude / Codex and point `<VAULT>` at that folder.
+1. Make a local folder and save [MEMORY.en.md](https://hc-ui.github.io/cross-ai-memory/MEMORY.en.md) as `MEMORY.md`.
+2. Copy the rule above and replace `<VAULT>` with that folder.
+3. Paste it into Cursor / Claude / Codex.
 
 When a durable fact should land, say `记住` or `approve write`. It should propose first. Short version: [docs/tonight.md](docs/tonight.md)
 

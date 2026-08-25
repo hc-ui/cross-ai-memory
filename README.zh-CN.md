@@ -62,11 +62,12 @@ https://hc-ui.github.io/cross-ai-memory/
 
 ## 不装也能抄
 
-把下面这段贴进每一家 AI 的规则，改掉文件夹路径就行。
+建一个文件夹，把 [MEMORY.md](https://hc-ui.github.io/cross-ai-memory/MEMORY.md) 存进去。再把下面这段贴进每一家 AI，把 `<VAULT>` 换成这个文件夹。
 
 ```text
-长期记忆是一个本地 Markdown 文件夹。
-先读 MEMORY.md，再只打开索引点名的那几篇。
+长期记忆文件夹：<VAULT>
+入口：<VAULT>/MEMORY.md
+先读入口，再只打开索引点名的那几篇。
 不要把整个文件夹读完。
 除非我明确说「记住 / remember / 同意写入 / approve write」，不要写笔记。
 先提最小改动。
@@ -77,9 +78,9 @@ https://hc-ui.github.io/cross-ai-memory/
 
 ## 今晚三步
 
-1. 打开 [公开页](https://hc-ui.github.io/cross-ai-memory/)，复制「不装也能抄」那段规则。
-2. 建一个本地文件夹。空壳：`aimem init ./my-memory`。想对着看：`aimem init --demo ./look`。
-3. 把规则贴进 Cursor / Claude / Codex，把里面的路径换成这个文件夹。
+1. 建一个本地文件夹，存入 [MEMORY.md](https://hc-ui.github.io/cross-ai-memory/MEMORY.md)。
+2. 复制上面那段规则，把 `<VAULT>` 换成这个文件夹。
+3. 贴进 Cursor / Claude / Codex。
 
 下次要落一条长期事实，说「记住」或「同意写入」。它应该先提案，你点头再写。单独一页：[docs/tonight.zh-CN.md](docs/tonight.zh-CN.md)
 

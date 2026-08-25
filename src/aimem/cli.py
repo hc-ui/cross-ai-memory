@@ -39,13 +39,13 @@ def cmd_init(args: argparse.Namespace) -> int:
     print()
     print("下一步")
     print(f"1. 打开 {vault / 'MEMORY.md'}")
-    print("2. 把 adapters/paste.txt 贴进每一家 AI")
-    print(f"3. 把规则里的 <VAULT> 换成 {vault}")
+    print(f"2. 把规则里的 <VAULT> 换成 {vault}，贴进每一家 AI")
+    print(f"3. 或打开 {vault / 'adapters' / 'cursor.md'}")
     print()
     print("Next")
     print(f"1. open {vault / 'MEMORY.md'}")
-    print("2. paste adapters/paste.txt into every AI")
-    print(f"3. point <VAULT> at {vault}")
+    print(f"2. replace <VAULT> with {vault} and paste into every AI")
+    print(f"3. or open {vault / 'adapters' / 'cursor.md'}")
     return 0
 
 
