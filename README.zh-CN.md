@@ -75,6 +75,14 @@ https://hc-ui.github.io/cross-ai-memory/
 
 一个主题只留一篇正文。你现在说的，大于旧笔记。现场核过的事实，大于猜测。两篇打架就摊开说，不许悄悄覆盖。
 
+## 今晚三步
+
+1. 打开 [公开页](https://hc-ui.github.io/cross-ai-memory/)，复制「不装也能抄」那段规则。
+2. 建一个本地文件夹。空壳：`aimem init ./my-memory`。想对着看：`aimem init --demo ./look`。
+3. 把规则贴进 Cursor / Claude / Codex，把里面的路径换成这个文件夹。
+
+下次要落一条长期事实，说「记住」或「同意写入」。它应该先提案，你点头再写。单独一页：[docs/tonight.zh-CN.md](docs/tonight.zh-CN.md)
+
 ## 想先跑起来
 
 ```bash

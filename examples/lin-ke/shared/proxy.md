@@ -14,18 +14,18 @@ tags:
   - proxy
 ---
 
-# Proxy snapshot
+# 代理快照
 
-## Conclusion
+## 结论
 
-On 2026-08-19 the local proxy listened on `127.0.0.1:7890`. `NO_PROXY` was `localhost,127.0.0.1`.
+2026-08-19 当天，本地代理听在 `127.0.0.1:7890`。`NO_PROXY` 是 `localhost,127.0.0.1`。
 
-## Evidence
+## 证据
 
-- Source: a local port check that day
-- How it was checked: demo story only
-- Still uncertain: the port will move. Recheck before 2026-10-15.
+- 来源：那天查过一次本地端口
+- 怎么核的：只是演示故事
+- 还不确定：端口会变。2026-10-15 之前要再核
 
-## Scope
+## 范围
 
-Do not treat this as today's truth after the review date. Do not put API hostnames into `NO_PROXY`.
+过了复核日，别把这页当成今天的真相。不要把 API 主机名塞进 `NO_PROXY`。

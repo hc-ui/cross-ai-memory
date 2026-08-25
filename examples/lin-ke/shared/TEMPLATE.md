@@ -13,20 +13,20 @@ tags:
   - template
 ---
 
-# Title
+# 标题
 
-After copying, set `note_type` to `canonical`, `snapshot`, `session`, `audit`, or `index`.
+复制后把 `note_type` 改成 `canonical`、`snapshot`、`session`、`audit` 或 `index`。
 
-## Conclusion
+## 结论
 
-One reusable sentence.
+一句以后还能用的话。
 
-## Evidence
+## 证据
 
-- Source:
-- How it was checked:
-- Still uncertain:
+- 来源：
+- 怎么核的：
+- 还不确定：
 
-## Scope
+## 范围
 
-When the next agent should read this.
+下场 AI 什么时候该读这篇。

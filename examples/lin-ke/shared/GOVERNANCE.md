@@ -13,33 +13,33 @@ tags:
   - governance
 ---
 
-# Governance
+# 怎么读、怎么写
 
-## Conclusion
+## 结论
 
-Every AI reads this vault. None of them write it unless Lin Ke says so in the current message.
+每家 AI 都读这本库。林可没在**当前这句话**里点头，谁都不能写。
 
-## The three rules
+## 三句规则
 
-1. Durable facts live in markdown Lin Ke can open.
-2. Cursor, Claude, and Codex all start at [[MEMORY]].
-3. A model may add a line to [[proposals/week-2026-08-24]]. It may not edit a canonical note first.
+1. 长期事实放在林可打得开的 Markdown 里。
+2. Cursor、Claude、Codex 都从 [[MEMORY]] 进。
+3. 模型可以给 [[proposals/week-2026-08-24]] 加一行。它不能先改正文。
 
-## Approval
+## 批准口令
 
-| Phrase | Allows |
+| 口令 | 允许做什么 |
 | --- | --- |
-| `同意写入` / `approve write` | named notes, `aimem check`, local commit |
-| `同意推送` / `approve push` | ordinary push of checked commits |
+| `同意写入` / `approve write` | 点名的笔记、`aimem check`、本地提交 |
+| `同意推送` / `approve push` | 已经检查过的普通推送 |
 
-"This might be useful later" is not approval.
+「以后也许有用」不是批准。
 
-## Conflicts
+## 冲突
 
-- Preferences: current Lin Ke statement > old note
-- Machine facts: what we just verified > what an AI remembers
-- If they disagree, keep both sentences and mark the boundary. Do not silently overwrite.
+- 说话方式：林可现在说的 > 旧笔记
+- 机器事实：刚核过的 > AI 自己记得的
+- 两边打架就两句都留着，标出边界。不许悄悄覆盖。
 
-## Scope
+## 范围
 
-This page is the demo's rule file. A real vault should keep the same gates and change the facts.
+这是演示库的规则页。真库换事实，门闩别换。

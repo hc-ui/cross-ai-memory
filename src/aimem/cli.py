@@ -33,9 +33,19 @@ def cmd_init(args: argparse.Namespace) -> int:
     dest = Path(args.path).expanduser()
     copied = init_vault(dest, force=args.force, demo=args.demo)
     kind = "demo vault" if args.demo else "empty vault"
-    print(f"{kind} ready: {dest.resolve()}")
+    vault = dest.resolve()
+    print(f"{kind} ready: {vault}")
     print(f"copied {len(copied)} files")
-    print("next: open MEMORY.md, then `aimem check` that folder")
+    print()
+    print("下一步")
+    print(f"1. 打开 {vault / 'MEMORY.md'}")
+    print("2. 把 adapters/paste.txt 贴进每一家 AI")
+    print(f"3. 把规则里的 <VAULT> 换成 {vault}")
+    print()
+    print("Next")
+    print(f"1. open {vault / 'MEMORY.md'}")
+    print("2. paste adapters/paste.txt into every AI")
+    print(f"3. point <VAULT> at {vault}")
     return 0
 
 

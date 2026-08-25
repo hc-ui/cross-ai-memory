@@ -32,7 +32,13 @@
     header { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0 8px; }
     nav { font-size: 15px; }
     nav a { color: var(--muted); text-decoration: none; margin-left: 16px; }
-    h1 { font-size: clamp(32px, 5vw, 50px); line-height: 1.18; margin: 24px 0 14px; }
+    h1 {
+      font-size: clamp(28px, 7vw, 50px);
+      line-height: 1.22;
+      margin: 24px 0 14px;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
     .lead { font-size: 20px; color: var(--muted); }
     .punch { font-size: 22px; margin: 24px 0 8px; }
     h2 { margin: 52px 0 14px; font-size: 26px; }
@@ -69,7 +75,20 @@
     .note .meta { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
     .note h3 { margin: 0 0 10px; }
     .note p { margin: 0 0 10px; }
-    .share { background: var(--paper); border: 1px dashed var(--line); padding: 14px 16px; font-size: 16px; }
+    .share { background: var(--paper); border: 1px dashed var(--line); padding: 14px 16px; font-size: 16px; overflow-wrap: anywhere; }
+    .tonight { display: grid; gap: 12px; padding: 0; list-style: none; counter-reset: tonight; }
+    .tonight li {
+      background: var(--paper); border: 1px solid var(--line); padding: 16px 18px 16px 64px;
+      position: relative;
+    }
+    .tonight li::before {
+      counter-increment: tonight;
+      content: counter(tonight, decimal-leading-zero);
+      position: absolute; left: 16px; top: 16px;
+      font-size: 13px; letter-spacing: .08em; color: var(--muted);
+    }
+    .tonight b { display: block; margin-bottom: 4px; }
+    .tonight code { font-size: 14px; }
     footer { color: var(--muted); font-size: 14px; padding: 48px 0 36px; }
   </style>
 </head>
@@ -77,18 +96,47 @@
   <header>
     <strong>cross-ai-memory</strong>
     <nav>
-      <a href="https://github.com/hc-ui/cross-ai-memory">GitHub</a>
+      <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/README.zh-CN.md">GitHub</a>
       <a href="en.html">English</a>
     </nav>
   </header>
   <main>
-    <h1>一本笔记，给你用的每一家 AI 看</h1>
+    <h1>一本笔记，<br>给你用的每一家 AI 看</h1>
     <p class="lead">早上跟 Cursor 说好下载目录。晚上 Claude 又问一遍。下周 Codex 当没这回事。不是模型笨，是每家各记各的，而且那本账你通常打不开。</p>
     <p class="punch">长期要记住的东西，写成你能打开的笔记。所有 AI 都读同一本。模型可以提案，你点头才许写。</p>
     <p class="share" id="share-line">一本笔记给所有 AI 看。模型只能提案，你点头才写入。<br>https://hc-ui.github.io/cross-ai-memory/</p>
     <p class="row">
       <button type="button" id="copy-share">复制分享语</button>
+      <a class="btn ghost" href="#tonight">今晚三步</a>
     </p>
+
+    <h2>方法就三句</h2>
+    <ol class="rules">
+      <li><b>01</b>长期记忆放在你能打开的 Markdown 里，不放在厂商的隐藏脑子里。</li>
+      <li><b>02</b>Cursor、Claude、Codex、Grok 读同一个文件夹。</li>
+      <li><b>03</b>AI 可以提案。你没点头，它不能写。记错的东西不许变成“事实”。</li>
+    </ol>
+
+    <h2>不装也能抄</h2>
+    <p>把这段贴进每一家 AI 的规则，改掉文件夹路径。</p>
+    <pre id="rule">长期记忆是一个本地 Markdown 文件夹。
+先读 MEMORY.md，再只打开索引点名的那几篇。
+不要把整个文件夹读完。
+除非我明确说「记住 / remember / 同意写入 / approve write」，不要写笔记。
+先提最小改动。
+不要存 Token、密码、Cookie。</pre>
+    <p class="row">
+      <button type="button" id="copy">复制这段</button>
+      <a class="btn ghost" href="https://github.com/hc-ui/cross-ai-memory/blob/main/README.zh-CN.md">去 GitHub 看完整方法</a>
+    </p>
+
+    <h2 id="tonight">今晚三步</h2>
+    <ol class="tonight">
+      <li><b>复制上面那段规则</b>点「复制这段」。路径先不用改，下一步再换。</li>
+      <li><b>建一个本地文件夹</b>空壳：<code>aimem init ./my-memory</code><br>想对着看：<code>aimem init --demo ./look</code></li>
+      <li><b>贴进你用的每一家 AI</b>把规则里的文件夹换成这一步建的。下次要落长期事实，说「记住」或「同意写入」。</li>
+    </ol>
+    <p><a href="https://github.com/hc-ui/cross-ai-memory/blob/main/docs/tonight.zh-CN.md">把这三步单独打开</a></p>
 
     <h2>同一天，差一本笔记</h2>
     <p>林可周一刚定过：新软件放 <code>E:/Apps</code>。周三换 Claude，现场会变成这样——</p>
@@ -107,13 +155,6 @@
       <p>任何要安装、解压、或问“放哪”的 AI。</p>
       <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/shared/install-path.md">在仓库里打开原文</a>
     </div>
-
-    <h2>方法就三句</h2>
-    <ol class="rules">
-      <li><b>01</b>长期记忆放在你能打开的 Markdown 里，不放在厂商的隐藏脑子里。</li>
-      <li><b>02</b>Cursor、Claude、Codex、Grok 读同一个文件夹。</li>
-      <li><b>03</b>AI 可以提案。你没点头，它不能写。记错的东西不许变成“事实”。</li>
-    </ol>
 
     <h2>一周怎么走完</h2>
     <p>林可是虚构的。文件是真的。周一写入，周三另一家读到，周日只出清单。</p>
@@ -156,19 +197,6 @@
         <div>leafbox 手册语气。没点头就不许改正文。</div>
       </div>
     </div>
-
-    <h2>不装也能抄</h2>
-    <p>把这段贴进每一家 AI 的规则，改掉文件夹路径。</p>
-    <pre id="rule">长期记忆是一个本地 Markdown 文件夹。
-先读 MEMORY.md，再只打开索引点名的那几篇。
-不要把整个文件夹读完。
-除非我明确说「记住 / remember / 同意写入 / approve write」，不要写笔记。
-先提最小改动。
-不要存 Token、密码、Cookie。</pre>
-    <p class="row">
-      <button type="button" id="copy">复制这段</button>
-      <a class="btn ghost" href="https://github.com/hc-ui/cross-ai-memory">去 GitHub 看完整方法</a>
-    </p>
 
     <h2>为什么现在值得做</h2>
     <p>用 AI 的人会越来越多。一个人同时用两家、三家，也会越来越普通。厂商不会帮你在 Cursor 和 Claude 之间同步「上周拍板的那件事」。你需要一本自己的记忆，不是六本厂商记忆。</p>

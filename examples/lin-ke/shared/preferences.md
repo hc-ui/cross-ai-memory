@@ -13,18 +13,18 @@ tags:
   - preferences
 ---
 
-# Preferences
+# 说话方式
 
-## Conclusion
+## 结论
 
-Answer in short Chinese first, then the reason and the next action. Do not greet. Do not pad.
+先用短中文答，再讲原因和下一步。不要寒暄。不要注水。
 
-## Evidence
+## 证据
 
-- Source: Lin Ke said this on 2026-08-18 in Cursor
-- How it was checked: written only after `同意写入`
-- Still uncertain: none for tone; English is fine when the user writes English
+- 来源：2026-08-18 林可在 Cursor 里说的
+- 怎么核的：只有「同意写入」之后才写进库
+- 还不确定：语气没有。对方用英文时可以跟英文
 
-## Scope
+## 范围
 
-Every AI reads this. It is not a project fact. It is not a machine path.
+每家 AI 都读。这不是项目事实，也不是路径。

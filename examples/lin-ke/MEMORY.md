@@ -13,28 +13,28 @@ tags:
   - navigation
 ---
 
-# Lin Ke's notebook
+# 林可的笔记
 
-This is a **fictional** shared memory. Lin Ke is not a real person. The point is to let you open a notebook that is already in use.
+这是一本**虚构**的共用记忆。林可不是真人。让你打开一本已经在运转的笔记。
 
-Monday, Cursor wrote the installer path.
-Wednesday, Claude read the same note and did not ask again.
-Sunday, Codex only proposed. Lin Ke approved one item and rejected another.
+周一，Cursor 写下安装路径。
+周三，Claude 读同一篇，没有再问。
+周日，Codex 只出清单。林可批准一条，驳回一条。
 
-## Start here
+## 从这里进
 
-| Open this | What you should notice |
+| 打开 | 你该看到什么 |
 | --- | --- |
-| [[shared/INDEX]] | one index, not a pile of chats |
-| [[shared/install-path]] | a durable fact, written once |
-| [[work/leafbox]] | a project decision that already changed once |
-| [[shared/preferences]] | how Lin Ke wants every AI to talk |
-| [[proposals/week-2026-08-24]] | a weekly list: approved / rejected / still open |
+| [[shared/INDEX]] | 一份索引，不是一堆聊天 |
+| [[shared/install-path]] | 一条只写一次的长期事实 |
+| [[work/leafbox]] | 一个已经改过一次的项目决定 |
+| [[shared/preferences]] | 林可希望每家 AI 怎么说话 |
+| [[proposals/week-2026-08-24]] | 一周清单：批准 / 驳回 / 还开着 |
 
-Rules: [[shared/GOVERNANCE]]
+规则：[[shared/GOVERNANCE]]
 
-## How an agent should read this
+## 下一家 AI 该怎么读
 
-1. A self-contained question does not open the vault.
-2. A question about an old decision opens this page, then **one or two** notes from the index.
-3. It does not write unless Lin Ke says `记住` / `approve write`.
+1. 自包含问题不要打开这本库。
+2. 问到旧决定时，先读本页，再只打开索引点名的一两篇。
+3. 林可没说「记住 / 同意写入」，不要写。

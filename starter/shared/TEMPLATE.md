@@ -15,24 +15,24 @@ tags:
   - todo
 ---
 
-# Long-term memory title
+# 标题
 
-After copying, change `note_type` to `index`, `canonical`, `snapshot`, `session`, `audit`, or `readme`.
+复制后把 `note_type` 改成 `index`、`canonical`、`snapshot`、`session`、`audit` 或 `readme`。
 
-## Conclusion
+## 结论
 
-One reusable sentence.
+一句以后还能用的话。
 
-## Evidence
+## 证据
 
-- Source:
-- How it was checked:
-- Still uncertain:
+- 来源：
+- 怎么核的：
+- 还不确定：
 
-## Scope
+## 范围
 
-When the next agent should read this, and when it should not.
+下场 AI 什么时候该读，什么时候不该读。
 
-## Changelog
+## 变更
 
-- YYYY-MM-DD: why this note was created or updated.
+- YYYY-MM-DD：为什么新建或改这篇。

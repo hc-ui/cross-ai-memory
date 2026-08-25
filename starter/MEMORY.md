@@ -13,31 +13,31 @@ tags:
   - navigation
 ---
 
-# Memory entry
+# 从这里进
 
-This file is the only start page. Agents do not browse the whole vault.
+这是唯一的入口。AI 不要把整本库翻完。
 
-## When to read
+## 什么时候读
 
-1. Self-contained questions do not read the vault.
-2. Long-term preferences, old decisions, local paths, or continuing a previous project: read [[shared/INDEX]], then only the notes it points to.
-3. Do not load every note. Default depth is **standard**.
+1. 自包含问题不要打开这本库。
+2. 长期偏好、旧决定、本机路径、或接着上次的项目：先读 [[shared/INDEX]]，再只打开它点名的那几篇。
+3. 不要一篇一篇读完。默认深度是 **standard**。
 
-## Read depth
+## 读到哪一层
 
-| Depth | When | What to open |
+| 深度 | 什么时候 | 打开什么 |
 | --- | --- | --- |
-| quick | one fact | this page plus one note |
-| standard | continue a project or check an old decision | the shared index plus one or two notes it names |
-| deep | user says "look thoroughly", conflict, new machine | opposing notes and the latest changelog |
+| quick | 只要一个事实 | 本页加一篇 |
+| standard | 接着做项目，或核对旧决定 | 共享索引，再加它点名的一两篇 |
+| deep | 你说「仔细查」、有冲突、换了机器 | 对立笔记和最近的变更日志 |
 
-## Write gate
+## 写入门闩
 
-Do not write the vault unless the current user message explicitly says to remember, sync, update, or write memory.
+当前这句话里没有明确说记住、同步、更新或写入记忆，就不要写。
 
-- Propose first.
-- One canonical note per topic.
-- Never store tokens, passwords, cookies, or unnecessary private data.
-- Current user statements beat old notes. Verified facts beat guesses. Report conflicts; do not silently overwrite.
+- 先提案。
+- 一个主题只留一篇正文。
+- 不要存 Token、密码、Cookie，也不要多存隐私。
+- 你现在说的，大于旧笔记。现场核过的事实，大于猜测。两边打架就摊开说，不许悄悄覆盖。
 
-Full rules: [[shared/GOVERNANCE]]
+完整规则：[[shared/GOVERNANCE]]

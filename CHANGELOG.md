@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.2 - 2026-08-26
+
+- Landing page wraps the title on a phone, leads with tonight’s three steps, and sends Chinese readers to the Chinese README.
+- Demo vault and empty starter notes are Chinese-first, so a click from the public page does not drop into English.
+
 ## 0.3.1 - 2026-08-26
 
 - Landing page now opens on a Wednesday chat contrast and the actual install-path note.

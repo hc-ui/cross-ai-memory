@@ -13,16 +13,16 @@ tags:
   - audit
 ---
 
-# Changelog
+# 变更日志
 
-Only approved writes. The weekly proposal is not a write.
+只记被批准的写入。每周提案本身不是写入。
 
-| ID | Date | Approval | What changed |
+| ID | 日期 | 批准 | 改了什么 |
 | --- | --- | --- | --- |
-| MEM-20260811-01 | 2026-08-11 | n/a | demo vault created |
+| MEM-20260811-01 | 2026-08-11 | 无 | 演示库建起来 |
 | MEM-20260818-01 | 2026-08-18 | `同意写入` | [[shared/preferences]] |
-| MEM-20260820-01 | 2026-08-20 | `同意写入` | [[work/leafbox]] first encoding choice |
-| MEM-20260822-01 | 2026-08-22 | `同意写入` | [[work/leafbox]] reversed after a broken Windows console |
+| MEM-20260820-01 | 2026-08-20 | `同意写入` | [[work/leafbox]] 第一次编码选择 |
+| MEM-20260822-01 | 2026-08-22 | `同意写入` | [[work/leafbox]] 控制台乱码后改回 |
 | MEM-20260824-01 | 2026-08-24 | `同意写入` CAND-20260824-01 | [[shared/install-path]] |
 
-Git stores the diffs. This table stores the permission.
+diff 交给 Git。这张表只记许可。

@@ -14,18 +14,18 @@ tags:
   - environment
 ---
 
-# Environment snapshot
+# 环境快照
 
-## Conclusion
+## 结论
 
-Lin Ke's daily tools in this story: Cursor, Claude Code, Codex. The vault is a local folder. There is no cloud memory service.
+这个故事里，林可日常用 Cursor、Claude Code、Codex。记忆库是本地文件夹。没有云端记忆服务。
 
-## Evidence
+## 证据
 
-- Source: demo setup
-- How it was checked: none beyond the story
-- Still uncertain: subscriptions change. Recheck before 2026-11-20
+- 来源：演示设定
+- 怎么核的：故事以外没有核过
+- 还不确定：订阅会变。2026-11-20 之前要再核
 
-## Scope
+## 范围
 
-Infrastructure only. Project facts live in [[work/leafbox]]. Tone lives in [[shared/preferences]].
+只记基础设施。项目事实在 [[work/leafbox]]。语气在 [[shared/preferences]]。

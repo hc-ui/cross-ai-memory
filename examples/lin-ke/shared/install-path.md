@@ -13,20 +13,20 @@ tags:
   - path
 ---
 
-# Installer path
+# 安装路径
 
-## Conclusion
+## 结论
 
-New software goes to `E:/Apps`. The old `Downloads` folder is only for files that may be deleted.
+新软件放到 `E:/Apps`。Downloads 只放能删的东西。
 
-## Evidence
+## 证据
 
-- Source: Lin Ke said this in Cursor on Monday 2026-08-24
-- How it was checked: the folder exists on the demo machine story; written after `同意写入` for CAND-20260824-01
-- Still uncertain: none. Do not "helpfully" switch back to `Downloads`
+- 来源：2026-08-24 周一，林可在 Cursor 里说的
+- 怎么核的：演示故事里这个目录存在；`同意写入` 之后才写成 CAND-20260824-01
+- 还不确定：没有。不要“帮忙”改回 Downloads
 
-## Scope
+## 谁该读
 
-Any AI that installs, unzips, or asks "where should this go" must read this note.
+任何要安装、解压、或问“放哪”的 AI。
 
-This is the note Claude opened on Wednesday. It did not ask again.
+这就是周三 Claude 打开的那一篇。它没有再问。

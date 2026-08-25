@@ -13,16 +13,16 @@ tags:
   - index
 ---
 
-# Shared memory index
+# 共享索引
 
-Open this after [[MEMORY]], then open only the notes that match the task.
+先读 [[MEMORY]]，再只打开对得上任务的那一行。
 
-| Note | Use |
+| 笔记 | 干什么用 |
 | --- | --- |
-| [[shared/GOVERNANCE]] | read/write rules, conflict order, approval phrases |
-| [[shared/TEMPLATE]] | copy this when creating a note |
-| [[shared/CHANGELOG]] | audit log of approved writes |
-| [[shared/examples/preferences]] | sample long-term preferences |
-| [[shared/examples/environment]] | sample machine facts with an expiry date |
+| [[shared/GOVERNANCE]] | 怎么读、怎么写，冲突顺序，批准口令 |
+| [[shared/TEMPLATE]] | 新笔记从这里抄 |
+| [[shared/CHANGELOG]] | 只记被批准的写入 |
+| [[shared/examples/preferences]] | 长期偏好的格式样例 |
+| [[shared/examples/environment]] | 带过期日的机器事实样例 |
 
-Replace the example notes with your own. Keep one canonical note per topic.
+把样例换成你自己的。一个主题只留一篇正文。

@@ -14,20 +14,20 @@ tags:
   - environment
 ---
 
-# Example environment snapshot
+# 环境样例
 
-Replace this file with facts you re-check on a schedule.
+换成你按期复核的事实。
 
-## Conclusion
+## 结论
 
-Sample machine: Windows, GitHub CLI named `gh`, memory vault kept in a local folder.
+样例机器：Windows，GitHub CLI 叫 `gh`，记忆库放在本地文件夹。
 
-## Evidence
+## 证据
 
-- Source: starter example
-- How it was checked: none
-- Still uncertain: every path and login state
+- 来源：空壳样例
+- 怎么核的：没有
+- 还不确定：每一条路径和登录状态
 
-## Scope
+## 范围
 
-Infrastructure snapshots expire. Recheck before `review_after`. Do not treat this page as currently true.
+基础设施快照会过期。`review_after` 之前再核。别把这页当成现在为真。

@@ -13,20 +13,20 @@ tags:
   - preferences
 ---
 
-# Example preferences
+# 偏好样例
 
-Replace this file. Do not keep fictional sample facts in a real vault.
+换掉这一篇。真库里不要留虚构样例。
 
-## Conclusion
+## 结论
 
-This person wants short Chinese answers first, then the reason and the next action.
+这个人希望先用短中文答，再讲原因和下一步。
 
-## Evidence
+## 证据
 
-- Source: starter example, not a real user statement
-- How it was checked: none
-- Still uncertain: everything; this is demo content
+- 来源：空壳样例，不是真人说过的话
+- 怎么核的：没有
+- 还不确定：全部；这是演示内容
 
-## Scope
+## 范围
 
-Read only as a format sample. Delete or rewrite before daily use.
+只当格式看。日常用之前删掉或重写。

@@ -26,7 +26,13 @@
     header { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0 8px; }
     nav { font-size: 15px; font-family: ui-sans-serif, "Segoe UI", sans-serif; }
     nav a { color: var(--muted); text-decoration: none; margin-left: 16px; }
-    h1 { font-size: clamp(32px, 5vw, 50px); line-height: 1.18; margin: 24px 0 14px; }
+    h1 {
+      font-size: clamp(28px, 7vw, 50px);
+      line-height: 1.22;
+      margin: 24px 0 14px;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
     .lead { font-size: 20px; color: var(--muted); }
     .punch { font-size: 22px; margin: 24px 0 8px; }
     h2 { margin: 52px 0 14px; font-size: 26px; }
@@ -55,7 +61,20 @@
     .note .meta { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
     .note h3 { margin: 0 0 10px; }
     .note p { margin: 0 0 10px; }
-    .share { background: var(--paper); border: 1px dashed var(--line); padding: 14px 16px; font-size: 16px; }
+    .share { background: var(--paper); border: 1px dashed var(--line); padding: 14px 16px; font-size: 16px; overflow-wrap: anywhere; }
+    .tonight { display: grid; gap: 12px; padding: 0; list-style: none; counter-reset: tonight; }
+    .tonight li {
+      background: var(--paper); border: 1px solid var(--line); padding: 16px 18px 16px 64px;
+      position: relative;
+    }
+    .tonight li::before {
+      counter-increment: tonight;
+      content: counter(tonight, decimal-leading-zero);
+      position: absolute; left: 16px; top: 16px;
+      font-size: 13px; letter-spacing: .08em; color: var(--muted);
+      font-family: ui-sans-serif, sans-serif;
+    }
+    .tonight b { display: block; margin-bottom: 4px; }
     footer { color: var(--muted); font-size: 14px; padding: 48px 0 36px; font-family: ui-sans-serif, sans-serif; }
   </style>
 </head>
@@ -68,11 +87,42 @@
     </nav>
   </header>
   <main>
-    <h1>One notebook for every AI you use</h1>
+    <h1>One notebook<br>for every AI you use</h1>
     <p class="lead">You told Cursor the folder this morning. Tonight Claude asks again. Next week Codex has never heard of it.</p>
     <p class="punch">Write the durable facts in notes you can open. Point every AI at the same notes. Let the model propose. You approve the write.</p>
     <p class="share" id="share-line">One notebook for every AI. Agents propose. You approve.<br>https://hc-ui.github.io/cross-ai-memory/en.html</p>
-    <p class="row"><button type="button" id="copy-share">Copy share text</button></p>
+    <p class="row">
+      <button type="button" id="copy-share">Copy share text</button>
+      <a class="btn ghost" href="#tonight">Tonight’s three steps</a>
+    </p>
+
+    <h2>Three sentences</h2>
+    <ol class="rules">
+      <li><b>01</b>Long-term memory lives in markdown you can open, not in a vendor brain.</li>
+      <li><b>02</b>Cursor, Claude, Codex, and Grok all read the same folder.</li>
+      <li><b>03</b>An AI may propose. It does not write until you say so.</li>
+    </ol>
+
+    <h2>Steal it without installing</h2>
+    <pre id="rule">Long-term memory is a local folder of markdown notes.
+Start at MEMORY.md. Then open only the notes the index names.
+Do not read the whole folder.
+Do not write a note unless I explicitly say:
+记住 / remember / 同意写入 / approve write.
+Propose the smallest change first.
+Never store tokens, passwords, or cookies.</pre>
+    <p class="row">
+      <button type="button" id="copy">Copy this</button>
+      <a class="btn ghost" href="https://github.com/hc-ui/cross-ai-memory">Read the full method on GitHub</a>
+    </p>
+
+    <h2 id="tonight">Tonight, three steps</h2>
+    <ol class="tonight">
+      <li><b>Copy the rule above</b>Use “Copy this”. Leave the folder path for the next step.</li>
+      <li><b>Make a local folder</b>Empty shell: <code>aimem init ./my-memory</code><br>Or copy the demo: <code>aimem init --demo ./look</code></li>
+      <li><b>Paste it into every AI you use</b>Point the rule at that folder. When a durable fact should land, say 记住 or approve write.</li>
+    </ol>
+    <p><a href="https://github.com/hc-ui/cross-ai-memory/blob/main/docs/tonight.md">Open these three steps alone</a></p>
 
     <h2>The same Wednesday</h2>
     <p>Monday, Lin Ke decided installers go to <code>E:/Apps</code>. Wednesday, Claude is a different product.</p>
@@ -91,13 +141,6 @@
       <p>Any AI that installs, unzips, or asks where a file should go.</p>
       <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/shared/install-path.md">Open the file in the repo</a>
     </div>
-
-    <h2>Three sentences</h2>
-    <ol class="rules">
-      <li><b>01</b>Long-term memory lives in markdown you can open, not in a vendor brain.</li>
-      <li><b>02</b>Cursor, Claude, Codex, and Grok all read the same folder.</li>
-      <li><b>03</b>An AI may propose. It does not write until you say so.</li>
-    </ol>
 
     <h2>The rest of the week</h2>
     <figure>
@@ -131,18 +174,9 @@
       <div class="cand"><span class="pill wait">CAND-03 · still open</span><div>leafbox man page tone. No edit until 同意写入.</div></div>
     </div>
 
-    <h2>Steal it without installing</h2>
-    <pre id="rule">Long-term memory is a local folder of markdown notes.
-Start at MEMORY.md. Then open only the notes the index names.
-Do not read the whole folder.
-Do not write a note unless I explicitly say:
-记住 / remember / 同意写入 / approve write.
-Propose the smallest change first.
-Never store tokens, passwords, or cookies.</pre>
-    <p class="row">
-      <button type="button" id="copy">Copy this</button>
-      <a class="btn ghost" href="https://github.com/hc-ui/cross-ai-memory">Read the full method on GitHub</a>
-    </p>
+    <h2>Why this is worth doing now</h2>
+    <p>More people will use AI. More people will use more than one. Vendors will not sync last week’s decision from Cursor to Claude. You need one notebook of your own, not six vendor brains.</p>
+    <p>Auto-memory fails dangerously: it writes the wrong note, then defends it. This method fails boringly: you forget to write a note.</p>
   </main>
   <footer>
     MIT · Lin Ke is fictional · <a href="https://github.com/hc-ui/cross-ai-memory">hc-ui/cross-ai-memory</a>

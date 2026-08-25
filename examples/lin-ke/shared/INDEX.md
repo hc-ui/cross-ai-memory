@@ -13,20 +13,20 @@ tags:
   - index
 ---
 
-# Shared index
+# 共享索引
 
-After [[MEMORY]], open only the row that matches the task.
+先读 [[MEMORY]]，再只打开对得上任务的那一行。
 
-| Note | Kind | Why it exists |
+| 笔记 | 种类 | 为什么有它 |
 | --- | --- | --- |
-| [[shared/GOVERNANCE]] | rules | how to read and write |
-| [[shared/TEMPLATE]] | template | copy this for a new note |
-| [[shared/CHANGELOG]] | audit | approved writes only |
-| [[shared/preferences]] | long-term | tone and language |
-| [[shared/install-path]] | long-term | Monday's decision |
-| [[shared/proxy]] | snapshot | expires, re-check |
-| [[shared/environment]] | snapshot | which AIs are in play |
-| [[work/leafbox]] | project | encoding decision, already reversed once |
-| [[proposals/week-2026-08-24]] | weekly list | Codex proposed, human sorted |
+| [[shared/GOVERNANCE]] | 规则 | 怎么读、怎么写 |
+| [[shared/TEMPLATE]] | 模板 | 新笔记从这里抄 |
+| [[shared/CHANGELOG]] | 审计 | 只记被批准的写入 |
+| [[shared/preferences]] | 长期 | 语气和语言 |
+| [[shared/install-path]] | 长期 | 周一那条决定 |
+| [[shared/proxy]] | 快照 | 会过期，要复核 |
+| [[shared/environment]] | 快照 | 现在在用哪几家 AI |
+| [[work/leafbox]] | 项目 | 编码决定，已经改过一次 |
+| [[proposals/week-2026-08-24]] | 周清单 | Codex 提案，人来分拣 |
 
-If a fact has no home, do not invent a new note to empty a proposal list.
+找不到落点就先挂着。不要为了清空清单硬开新篇。

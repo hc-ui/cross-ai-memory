@@ -76,6 +76,14 @@ Never store tokens, passwords, or cookies.
 
 One topic, one note. Current user statements beat old notes. Verified facts beat guesses. If two notes disagree, say so — do not silently overwrite.
 
+## Tonight, three steps
+
+1. Open the [public page](https://hc-ui.github.io/cross-ai-memory/en.html) and copy the rule above.
+2. Make a local folder. Empty shell: `aimem init ./my-memory`. Working demo: `aimem init --demo ./look`.
+3. Paste the rule into Cursor / Claude / Codex and point `<VAULT>` at that folder.
+
+When a durable fact should land, say `记住` or `approve write`. It should propose first. Short version: [docs/tonight.md](docs/tonight.md)
+
 ## Try the kit
 
 ```bash

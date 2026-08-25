@@ -13,12 +13,12 @@ tags:
   - audit
 ---
 
-# Memory changelog
+# 变更日志
 
-Assign `MEM-YYYYMMDD-NN` to each approved write batch. Git commit messages should reuse the same id.
+每一次被批准的写入批次给一个 `MEM-YYYYMMDD-NN`。Git 提交说明复用同一个编号。
 
-| ID | Date | Who | Approval | What changed |
+| ID | 日期 | 谁 | 批准 | 改了什么 |
 | --- | --- | --- | --- | --- |
-| MEM-20260825-01 | 2026-08-25 | starter | n/a | example vault created |
+| MEM-20260825-01 | 2026-08-25 | 空壳 | 无 | 示例库建起来 |
 
-Do not paste full diffs here. Git already stores them.
+不要把完整 diff 贴到这里。Git 已经存了。
