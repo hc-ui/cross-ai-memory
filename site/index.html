@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>一本笔记，给你用的每一家 AI 看</title>
+  <meta name="description" content="长期记忆写成你能打开的笔记。所有 AI 读同一本。模型可以提案，你点头才许写。">
+  <link rel="canonical" href="https://hc-ui.github.io/cross-ai-memory/">
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --ink: #1c1917;
+      --muted: #57534e;
+      --paper: #fffdf8;
+      --line: #d6d0c4;
+      --ok: #3f6212;
+      --ok-bg: #ecfccb;
+      --no: #9f1239;
+      --no-bg: #ffe4e6;
+      --wait: #854d0e;
+      --wait-bg: #fef9c3;
+      --accent: #1d4ed8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font: 18px/1.6 "Iwanami Text", "Source Han Serif SC", "Songti SC", "Noto Serif SC", "Georgia", serif;
+    }
+    a { color: var(--accent); }
+    header, main, footer { width: min(860px, calc(100% - 40px)); margin: 0 auto; }
+    header { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0 8px; }
+    nav { font-size: 15px; font-family: ui-sans-serif, "Segoe UI", sans-serif; }
+    nav a { color: var(--muted); text-decoration: none; margin-left: 16px; }
+    h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.15; margin: 28px 0 16px; }
+    .lead { font-size: 20px; color: var(--muted); }
+    .punch { font-size: 22px; margin: 28px 0; }
+    h2 { margin: 56px 0 16px; font-size: 28px; }
+    .rules { display: grid; gap: 12px; padding: 0; list-style: none; }
+    .rules li { background: var(--paper); border: 1px solid var(--line); padding: 16px 18px; }
+    .rules b { display: block; font-size: 14px; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; font-family: ui-sans-serif, "Segoe UI", sans-serif; }
+    .week { display: grid; gap: 14px; }
+    @media (min-width: 800px) { .week { grid-template-columns: 1fr 1fr 1fr; } }
+    article {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 18px 18px 16px;
+      min-height: 100%;
+    }
+    article .when { font-family: ui-sans-serif, "Segoe UI", sans-serif; font-size: 13px; letter-spacing: .06em; color: var(--muted); }
+    article h3 { margin: 8px 0 10px; font-size: 20px; }
+    article p { margin: 0 0 12px; font-size: 16px; }
+    article a { font-family: ui-sans-serif, "Segoe UI", sans-serif; font-size: 14px; }
+    .cands { display: grid; gap: 12px; }
+    .cand { padding: 14px 16px; border: 1px solid var(--line); background: var(--paper); }
+    .pill { display: inline-block; font-family: ui-sans-serif, "Segoe UI", sans-serif; font-size: 12px; padding: 2px 8px; margin-bottom: 8px; }
+    .ok { background: var(--ok-bg); color: var(--ok); }
+    .no { background: var(--no-bg); color: var(--no); }
+    .wait { background: var(--wait-bg); color: var(--wait); }
+    pre {
+      background: #1c1917;
+      color: #f5f5f4;
+      padding: 18px;
+      overflow: auto;
+      font: 14px/1.5 ui-monospace, "Cascadia Mono", Consolas, monospace;
+    }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    button, .btn {
+      font: 15px/1 ui-sans-serif, "Segoe UI", sans-serif;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+      padding: 10px 14px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn.ghost { background: transparent; color: var(--ink); }
+    figure { margin: 28px 0; }
+    figure img { width: 100%; height: auto; background: var(--paper); border: 1px solid var(--line); }
+    footer { color: var(--muted); font-size: 14px; padding: 48px 0 36px; font-family: ui-sans-serif, "Segoe UI", sans-serif; }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>cross-ai-memory</strong>
+    <nav>
+      <a href="https://github.com/hc-ui/cross-ai-memory">GitHub</a>
+      <a href="en.html">English</a>
+    </nav>
+  </header>
+  <main>
+    <h1>一本笔记，给你用的每一家 AI 看</h1>
+    <p class="lead">早上跟 Cursor 说好下载目录。晚上 Claude 又问一遍。下周 Codex 当没这回事。不是模型笨，是每家各记各的，而且那本账你通常打不开。</p>
+    <p class="punch">长期要记住的东西，写成你能打开的笔记。所有 AI 都读同一本。模型可以提案，你点头才许写。</p>
+    <figure>
+      <img src="assets/idea.zh.svg" alt="三家 AI 各记各的；一本共用笔记，你批准才写入">
+    </figure>
+
+    <h2>方法就三句</h2>
+    <ol class="rules">
+      <li><b>01</b>长期记忆放在你能打开的 Markdown 里，不放在厂商的隐藏脑子里。</li>
+      <li><b>02</b>Cursor、Claude、Codex、Grok 读同一个文件夹。</li>
+      <li><b>03</b>AI 可以提案。你没点头，它不能写。记错的东西不许变成“事实”。</li>
+    </ol>
+
+    <h2>先看一本正在用的笔记</h2>
+    <p>林可是虚构的。下面三个文件是真的。周一写入，周三另一家 AI 读到，周日只出清单。</p>
+    <figure>
+      <img src="assets/week.zh.svg" alt="周一写，周三读，周日只提案">
+    </figure>
+    <div class="week">
+      <article>
+        <div class="when">周一 · Cursor</div>
+        <h3>写下一条事实</h3>
+        <p>新软件放到 <code>E:/Apps</code>。先提案，再说「同意写入」。只多一篇笔记。</p>
+        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/shared/install-path.md">打开 install-path.md</a>
+      </article>
+      <article>
+        <div class="when">周三 · Claude</div>
+        <h3>读同一篇</h3>
+        <p>新窗口，另一家产品。从 MEMORY.md 进，再读安装路径。没有再问文件该放哪。</p>
+        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/MEMORY.md">打开 MEMORY.md</a>
+      </article>
+      <article>
+        <div class="when">周日 · Codex</div>
+        <h3>只出清单</h3>
+        <p>扫描本周本地会话。一条批准，一条驳回，一条还开着。正文一篇没动。</p>
+        <a href="https://github.com/hc-ui/cross-ai-memory/blob/main/examples/lin-ke/proposals/week-2026-08-24.md">打开当周提案</a>
+      </article>
+    </div>
+
+    <h2>周日那张清单长这样</h2>
+    <div class="cands">
+      <div class="cand">
+        <span class="pill ok">CAND-01 · 已批准并写入</span>
+        <div>安装路径是长期事实。写入 <code>shared/install-path.md</code>，变更号 MEM-20260824-01。</div>
+      </div>
+      <div class="cand">
+        <span class="pill no">CAND-02 · 驳回，以后别再列</span>
+        <div>「改 README 涨星」是猜测，不是事实。驳回留在清单上，免得下周又拎出来。</div>
+      </div>
+      <div class="cand">
+        <span class="pill wait">CAND-03 · 还开着</span>
+        <div>leafbox 手册语气。等林可再说「同意写入」。没点头就不许改正文。</div>
+      </div>
+    </div>
+
+    <h2>不装也能抄</h2>
+    <p>把这段贴进每一家 AI 的规则，改掉文件夹路径。</p>
+    <pre id="rule">长期记忆是一个本地 Markdown 文件夹。
+先读 MEMORY.md，再只打开索引点名的那几篇。
+不要把整个文件夹读完。
+除非我明确说「记住 / remember / 同意写入 / approve write」，不要写笔记。
+先提最小改动。
+不要存 Token、密码、Cookie。</pre>
+    <p class="row">
+      <button type="button" id="copy">复制这段</button>
+      <a class="btn ghost" href="https://github.com/hc-ui/cross-ai-memory">去 GitHub 看完整方法</a>
+    </p>
+
+    <h2>为什么现在值得做</h2>
+    <p>用 AI 的人会越来越多。一个人同时用两家、三家，也会越来越普通。厂商不会帮你在 Cursor 和 Claude 之间同步「上周拍板的那件事」。你需要一本自己的记忆，不是六本厂商记忆。</p>
+    <p>自动记忆失败得很危险：它写错了，还接着用。这套方法失败得很无聊：你忘了写一条。</p>
+  </main>
+  <footer>
+    MIT · 林可是虚构人物 · <a href="https://github.com/hc-ui/cross-ai-memory">hc-ui/cross-ai-memory</a>
+  </footer>
+  <script>
+    document.getElementById("copy").onclick = async function () {
+      const text = document.getElementById("rule").innerText;
+      try {
+        await navigator.clipboard.writeText(text);
+        this.textContent = "已复制";
+      } catch (err) {
+        this.textContent = "选中后 Ctrl+C";
+      }
+    };
+  </script>
+</body>
+</html>

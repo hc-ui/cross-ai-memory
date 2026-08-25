@@ -1,0 +1,7 @@
+Long-term memory is a local folder of markdown notes.
+Start at MEMORY.md. Then open only the notes the index names.
+Do not read the whole folder.
+Do not write a note unless I explicitly say:
+记住 / remember / 同意写入 / approve write.
+Propose the smallest change first.
+Never store tokens, passwords, or cookies.

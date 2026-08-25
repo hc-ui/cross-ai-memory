@@ -15,6 +15,7 @@ aimem doctor ./look
 | Command | What it does |
 | --- | --- |
 | `aimem tour` | print Lin Ke's week |
+| `aimem rule` | print the paste-ready rule (`--lang zh|en`) |
 | `aimem init [DIR]` | copy the empty starter vault and adapters |
 | `aimem init --demo [DIR]` | copy the lived-in demo vault |
 | `aimem check [DIR]` | read-only health check |

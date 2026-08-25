@@ -3,7 +3,9 @@
 [![CI](https://github.com/hc-ui/cross-ai-memory/actions/workflows/ci.yml/badge.svg)](https://github.com/hc-ui/cross-ai-memory/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-[English](README.md) · [简体中文](README.zh-CN.md)
+**Share this page:** [hc-ui.github.io/cross-ai-memory](https://hc-ui.github.io/cross-ai-memory/)
+
+[English](README.md) · [简体中文](README.zh-CN.md) · [English site](https://hc-ui.github.io/cross-ai-memory/en.html)
 
 You told Cursor the download folder this morning.
 Tonight Claude asks again.
@@ -72,6 +74,7 @@ One topic, one note. Current user statements beat old notes. Verified facts beat
 ```bash
 pip install git+https://github.com/hc-ui/cross-ai-memory.git
 aimem tour
+aimem rule
 aimem check examples/lin-ke
 aimem init --demo ./look
 ```

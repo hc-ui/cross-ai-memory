@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="300" viewBox="0 0 960 300" role="img" aria-label="Monday write, Wednesday read, Sunday propose">
+  <rect width="960" height="300" fill="#f6f8fa"/>
+  <rect x="16" y="16" width="296" height="268" rx="14" fill="#ffffff" stroke="#54aeff"/>
+  <rect x="332" y="16" width="296" height="268" rx="14" fill="#ffffff" stroke="#1a7f37"/>
+  <rect x="648" y="16" width="296" height="268" rx="14" fill="#ffffff" stroke="#bf8700"/>
+  <text x="164" y="52" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#0969da">Monday · Cursor</text>
+  <text x="480" y="52" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#1a7f37">Wednesday · Claude</text>
+  <text x="796" y="52" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#9a6700">Sunday · Codex</text>
+  <text x="164" y="110" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#24292f">"Put installers in E:/Apps."</text>
+  <text x="164" y="150" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#24292f">Propose first.</text>
+  <text x="164" y="190" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#24292f">Then ™e.</text>
+  <text x="164" y="230" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" fill="#656d76">one new note</text>
+  <text x="480" y="110" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#24292f">New chat. Other product.</text>
+  <text x="480" y="150" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#24292f">Opens MEMORY.md</text>
+  <text x="480" y="190" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#24292f">then install-path.md</text>
+  <text x="480" y="230" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" fill="#656d76">does not ask again</text>
+  <text x="796" y="110" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#24292f">Scan the week's chats.</text>
+  <text x="796" y="150" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#24292f">1 approved</text>
+  <text x="796" y="190" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#24292f">1 rejected · 1 still open</text>
+  <text x="796" y="230" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" fill="#656d76">no silent write</text>
+</svg>

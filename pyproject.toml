@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cross-ai-memory"
-version = "0.2.0"
+version = "0.3.0"
 description = "One shared notebook for every AI you use. Agents propose; you approve."
 readme = "README.md"
 license = { text = "MIT" }
@@ -27,7 +27,7 @@ dev = ["pytest>=8.0"]
 aimem = "aimem.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/hc-ui/cross-ai-memory"
+Homepage = "https://hc-ui.github.io/cross-ai-memory/"
 Issues = "https://github.com/hc-ui/cross-ai-memory/issues"
 
 [tool.hatch.build.targets.wheel]

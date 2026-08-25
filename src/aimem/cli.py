@@ -19,6 +19,7 @@ from aimem.collect import (
     status,
 )
 from aimem.paths import default_inbox, demo_vault
+from aimem.rule import paste_block
 from aimem.tour import tour_text
 from aimem.vault import init_vault
 
@@ -53,6 +54,11 @@ def cmd_check(args: argparse.Namespace) -> int:
 
 def cmd_tour(_args: argparse.Namespace) -> int:
     print(tour_text(demo_vault()), end="")
+    return 0
+
+
+def cmd_rule(args: argparse.Namespace) -> int:
+    print(paste_block(args.lang), end="")
     return 0
 
 
@@ -140,6 +146,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     tour = sub.add_parser("tour", help="print Lin Ke's week: write, read-across, propose")
     tour.set_defaults(func=cmd_tour)
+
+    rule = sub.add_parser("rule", help="print the paste-ready rule for every AI")
+    rule.add_argument("--lang", choices=["zh", "en"], default="zh")
+    rule.set_defaults(func=cmd_rule)
 
     check = sub.add_parser("check", help="read-only vault health check")
     check.add_argument("path", nargs="?", default=".")

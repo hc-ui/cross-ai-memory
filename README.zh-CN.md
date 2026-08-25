@@ -3,7 +3,9 @@
 [![CI](https://github.com/hc-ui/cross-ai-memory/actions/workflows/ci.yml/badge.svg)](https://github.com/hc-ui/cross-ai-memory/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-[English](README.md) · [简体中文](README.zh-CN.md)
+**给别人看的页：** [hc-ui.github.io/cross-ai-memory](https://hc-ui.github.io/cross-ai-memory/)
+
+[English](README.md) · [简体中文](README.zh-CN.md) · [English site](https://hc-ui.github.io/cross-ai-memory/en.html)
 
 早上你跟 Cursor 说好了下载目录。
 晚上换 Claude，它又问一遍。
@@ -71,6 +73,7 @@
 ```bash
 pip install git+https://github.com/hc-ui/cross-ai-memory.git
 aimem tour
+aimem rule
 aimem check examples/lin-ke
 aimem init --demo ./look
 ```

@@ -1,0 +1,35 @@
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Assemble site
+        run: |
+          mkdir -p public/assets
+          cp site/index.html site/en.html public/
+          cp assets/idea.svg assets/idea.zh.svg assets/week.svg assets/week.zh.svg public/assets/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: public
+      - id: deployment
+        uses: actions/deploy-pages@v4

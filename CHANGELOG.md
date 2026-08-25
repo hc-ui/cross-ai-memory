@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0 - 2026-08-25
+
+- Add a standalone story page for sharing: Chinese first, English second.
+- Add `aimem rule` and a one-file paste block under `adapters/`.
+- GitHub Pages publishes `site/`.
+
 ## 0.2.0 - 2026-08-25
 
 - Add Lin Ke's lived-in demo vault, a week walkthrough, and a Sunday proposal list.
