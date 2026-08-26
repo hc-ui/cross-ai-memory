@@ -140,6 +140,20 @@ def cmd_collect_normalize(args: argparse.Namespace) -> int:
     return 0
 
 
+def _positive_int(value: str) -> int:
+    parsed = int(value)
+    if parsed < 1:
+        raise argparse.ArgumentTypeError("must be >= 1")
+    return parsed
+
+
+def _non_negative_int(value: str) -> int:
+    parsed = int(value)
+    if parsed < 0:
+        raise argparse.ArgumentTypeError("must be >= 0")
+    return parsed
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="aimem",
@@ -182,15 +196,15 @@ def build_parser() -> argparse.ArgumentParser:
 
     c_scan = collect_sub.add_parser("scan", help="list new or appended allowlisted files")
     add_inbox(c_scan)
-    c_scan.add_argument("--max-items", type=int, default=40)
-    c_scan.add_argument("--quiet-minutes", type=int, default=15)
+    c_scan.add_argument("--max-items", type=_positive_int, default=40)
+    c_scan.add_argument("--quiet-minutes", type=_non_negative_int, default=15)
     c_scan.set_defaults(func=cmd_collect_scan)
 
     c_read = collect_sub.add_parser("read", help="normalize one scan item to user/assistant text")
     add_inbox(c_read)
     c_read.add_argument("--scan-id", required=True)
-    c_read.add_argument("--item-id", required=True, type=int)
-    c_read.add_argument("--max-output-chars", type=int, default=120000)
+    c_read.add_argument("--item-id", required=True, type=_non_negative_int)
+    c_read.add_argument("--max-output-chars", type=_positive_int, default=120000)
     c_read.set_defaults(func=cmd_collect_read)
 
     c_commit = collect_sub.add_parser("commit", help="advance collector checkpoint only, not git")
@@ -210,7 +224,7 @@ def build_parser() -> argparse.ArgumentParser:
     c_norm = collect_sub.add_parser("normalize", help="normalize one jsonl file without touching inbox state")
     c_norm.add_argument("--path", required=True)
     c_norm.add_argument("--source", required=True, choices=["codex", "claude-code", "grok", "grok-heavy", "antigravity", "cursor"])
-    c_norm.add_argument("--max-output-chars", type=int, default=120000)
+    c_norm.add_argument("--max-output-chars", type=_positive_int, default=120000)
     c_norm.set_defaults(func=cmd_collect_normalize)
     return parser
 
@@ -220,6 +234,6 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     try:
         return args.func(args)
-    except (FileExistsError, FileNotFoundError, KeyError, ValueError) as exc:
+    except (FileExistsError, FileNotFoundError, KeyError, ValueError, OSError, json.JSONDecodeError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
