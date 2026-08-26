@@ -26,7 +26,7 @@ REQUIRED_FIELDS = (
 )
 VALID_STATUS = {"active", "historical", "deprecated"}
 VALID_CONFIDENCE = {"confirmed", "confirmed_for_date", "mixed", "unverified"}
-VALID_SCOPE = {"shared", "claude-code", "codex", "grok", "antigravity", "cursor"}
+VALID_SCOPE = {"shared", "claude-code", "codex", "grok", "grok-heavy", "antigravity", "cursor"}
 VALID_TYPES = {"index", "canonical", "snapshot", "session", "audit", "readme", "template"}
 SKIP_DIRS = {".obsidian", ".git", ".aimem-inbox", "__pycache__", ".pytest_cache", "adapters"}
 

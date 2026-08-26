@@ -77,6 +77,20 @@ def test_frontmatter_and_field_and_enums(tmp_path: Path) -> None:
     assert "ENTRY-MISSING" not in codes
 
 
+def test_grok_heavy_scope_is_accepted(tmp_path: Path) -> None:
+    vault = tmp_path / "v"
+    vault.mkdir()
+    _write(vault / "MEMORY.md", title="Entry", note_type="index", body="[[shared/one]]")
+    _write(
+        vault / "shared" / "one.md",
+        title="One",
+        note_type="canonical",
+        scope="grok-heavy",
+    )
+    result = check_vault(vault)
+    assert not any(issue.code == "BAD-SCOPE" for issue in result.issues)
+
+
 def test_entry_missing_and_unreadable(tmp_path: Path) -> None:
     vault = tmp_path / "v"
     vault.mkdir()

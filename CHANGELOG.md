@@ -3,6 +3,7 @@
 ## 0.3.8 - 2026-08-26
 
 - Vault check now shares secret detection with the collector redactor (JWT, Google API keys, AWS access keys) and reports unreadable notes instead of crashing.
+- `scope: grok-heavy` is accepted, matching the collector source that already exists.
 - Collector validates scan limits, rejects broken JSON config/state, ignores unreadable session trees, and cleans up failed atomic writes.
 - `aimem init` copies adapter `.txt` paste blocks as well as `.md` files.
 - CLI rejects non-positive collect limits and surfaces `OSError` / JSON errors as exit status 2.
