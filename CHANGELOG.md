@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.8 - 2026-08-26
+
+- Vault check now shares secret detection with the collector redactor (JWT, Google API keys, AWS access keys) and reports unreadable notes instead of crashing.
+- Collector validates scan limits, rejects broken JSON config/state, ignores unreadable session trees, and cleans up failed atomic writes.
+- `aimem init` copies adapter `.txt` paste blocks as well as `.md` files.
+- CLI rejects non-positive collect limits and surfaces `OSError` / JSON errors as exit status 2.
+- Tests cover health-check issue codes, collect read/commit/abandon, allowlist enforcement, and every session parser.
+- Dev extra now includes Ruff. Updating `.github/workflows/ci.yml` needs a token with `workflow` scope.
+
 ## 0.3.7 - 2026-08-26
 
 - Add a docs map and a Chinese CLI page, so the repo has one reading order.
