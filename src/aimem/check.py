@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import re
+from collections import deque
 from dataclasses import dataclass, field
 from datetime import date, datetime
 from pathlib import Path
+
+from aimem.redact import find_secret_like
 
 FRONTMATTER_RE = re.compile(r"(?s)^---\r?\n(.*?)\r?\n---")
 FIELD_RE = re.compile(r"(?m)^([A-Za-z0-9_]+)[ \t]*:[ \t]*([^\r\n#]*)")
@@ -25,15 +28,6 @@ VALID_STATUS = {"active", "historical", "deprecated"}
 VALID_CONFIDENCE = {"confirmed", "confirmed_for_date", "mixed", "unverified"}
 VALID_SCOPE = {"shared", "claude-code", "codex", "grok", "antigravity", "cursor"}
 VALID_TYPES = {"index", "canonical", "snapshot", "session", "audit", "readme", "template"}
-SECRET_PATTERNS = (
-    r"ghp_[A-Za-z0-9]{20,}",
-    r"gho_[A-Za-z0-9]{20,}",
-    r"github_pat_[A-Za-z0-9_]{20,}",
-    r"sk-[A-Za-z0-9]{20,}",
-    r"AKIA[0-9A-Z]{16}",
-    r"(?i)bearer\s+[A-Za-z0-9\-_\.]{25,}",
-    r"(?i)(password|passwd)\s*[:=]\s*\S{6,}",
-)
 SKIP_DIRS = {".obsidian", ".git", ".aimem-inbox", "__pycache__", ".pytest_cache", "adapters"}
 
 
@@ -79,6 +73,15 @@ def _parse_iso_date(value: str) -> date | None:
         return None
 
 
+def _read_note(path: Path) -> tuple[str | None, str | None]:
+    try:
+        return path.read_text(encoding="utf-8"), None
+    except UnicodeDecodeError as exc:
+        return None, f"not valid utf-8: {exc.reason}"
+    except OSError as exc:
+        return None, f"unreadable: {exc.strerror or exc}"
+
+
 def check_vault(vault: Path) -> CheckResult:
     root = vault.resolve()
     result = CheckResult(vault=root, notes=0)
@@ -92,16 +95,21 @@ def check_vault(vault: Path) -> CheckResult:
     for path in files:
         rel = _rel(path, root)
         targets[rel[:-3]] = path
-        targets[path.stem] = path
+        targets.setdefault(path.stem, path)
 
     records: dict[str, dict[str, str]] = {}
     titles: dict[str, list[str]] = {}
     edges: dict[str, list[str]] = {}
+    bodies: dict[str, str] = {}
     today = date.today()
 
     for path in files:
         rel = _rel(path, root)
-        text = path.read_text(encoding="utf-8")
+        text, read_error = _read_note(path)
+        if text is None:
+            result.issues.append(Issue("UNREADABLE", rel, read_error or "unreadable"))
+            continue
+        bodies[rel] = text
         match = FRONTMATTER_RE.match(text)
         if not match:
             result.issues.append(Issue("NO-FRONTMATTER", rel, "frontmatter block missing"))
@@ -157,7 +165,7 @@ def check_vault(vault: Path) -> CheckResult:
                 continue
             target = targets.get(raw)
             if target is None:
-                suffix_hits = [path for key, path in targets.items() if key.endswith("/" + raw)]
+                suffix_hits = [candidate for key, candidate in targets.items() if key.endswith("/" + raw)]
                 target = suffix_hits[0] if len(suffix_hits) == 1 else None
             if target is None:
                 result.issues.append(Issue("BROKEN-LINK", rel, raw))
@@ -176,14 +184,17 @@ def check_vault(vault: Path) -> CheckResult:
         if fields.get("note_type") in {"canonical", "snapshot", "session"} and rel not in incoming_from_index:
             result.issues.append(Issue("NOT-INDEXED", rel, "content note has no incoming link from an index"))
 
-    entry = next((rel for rel, fields in records.items() if Path(rel).name == "MEMORY.md" and fields.get("note_type") == "index"), None)
+    entry = next(
+        (rel for rel, fields in records.items() if Path(rel).name == "MEMORY.md" and fields.get("note_type") == "index"),
+        None,
+    )
     if entry is None:
         result.issues.append(Issue("ENTRY-MISSING", "", "MEMORY.md index not found"))
     else:
         visited: set[str] = set()
-        queue = [entry]
+        queue: deque[str] = deque([entry])
         while queue:
-            node = queue.pop(0)
+            node = queue.popleft()
             if node in visited:
                 continue
             visited.add(node)
@@ -192,11 +203,8 @@ def check_vault(vault: Path) -> CheckResult:
             if fields.get("note_type") not in {"readme", "template"} and rel not in visited:
                 result.issues.append(Issue("UNREACHABLE", rel, "not reachable from MEMORY.md"))
 
-    for path in files:
-        rel = _rel(path, root)
-        text = path.read_text(encoding="utf-8")
-        for pattern in SECRET_PATTERNS:
-            if re.search(pattern, text):
-                result.issues.append(Issue("SECRET-LIKE", rel, pattern))
-                break
+    for rel, text in bodies.items():
+        hit = find_secret_like(text)
+        if hit:
+            result.issues.append(Issue("SECRET-LIKE", rel, hit))
     return result
