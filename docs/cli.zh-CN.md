@@ -24,6 +24,8 @@ aimem doctor ./look
 | `aimem collect scan` | 列出新增或追加的允许文件 |
 | `aimem collect read` | 收成用户/助手文本，遮蔽凭证 |
 | `aimem collect commit` | 推进采集器检查点。不是 git 提交 |
+| `aimem collect abandon` | 丢掉一次待处理扫描，不推进检查点 |
+| `aimem collect status` | 显示 inbox 检查点和未提交扫描 |
 | `aimem collect normalize` | 解析一个 jsonl，不动 inbox |
 
 `collect` 不改正文。
