@@ -7,7 +7,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
-from aimem.paths import default_inbox, normalize_match_path
+from aimem.paths import normalize_match_path
 from aimem.redact import redact_sensitive_text
 
 SKIP_FRAGMENT_TYPES = {"tool_result", "tool_use", "thinking", "reasoning", "image", "audio"}
