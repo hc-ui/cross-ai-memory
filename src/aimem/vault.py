@@ -29,7 +29,9 @@ def init_vault(dest: Path, *, force: bool = False, demo: bool = False) -> list[s
 
     adapter_dir = dest / "adapters"
     adapter_dir.mkdir(parents=True, exist_ok=True)
-    for src in adapters.glob("*.md"):
+    for src in sorted(adapters.iterdir()):
+        if not src.is_file() or src.suffix.lower() not in {".md", ".txt"}:
+            continue
         target = adapter_dir / src.name
         if target.exists() and not force:
             continue
