@@ -7,7 +7,7 @@ _PATTERNS = (
     (
         re.compile(
             r"(?i)\b(sk-[A-Za-z0-9_-]{16,}|github_pat_[A-Za-z0-9_]{20,}|"
-            r"gh[pousr]_[A-Za-z0-9_]{20,}|AIza[A-Za-z0-9_-]{20,})\b"
+            r"gh[pousr]_[A-Za-z0-9_]{20,}|AIza[A-Za-z0-9_-]{20,}|AKIA[0-9A-Z]{16})\b"
         ),
         "[REDACTED_TOKEN]",
     ),
@@ -23,6 +23,14 @@ _PATTERNS = (
         r"\1[REDACTED]",
     ),
 )
+
+
+def find_secret_like(text: str) -> str | None:
+    """Return a stable label if *text* looks like it contains a credential."""
+    for pattern, _replacement in _PATTERNS:
+        if pattern.search(text):
+            return pattern.pattern
+    return None
 
 
 def redact_sensitive_text(text: str | None) -> str:

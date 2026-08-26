@@ -14,6 +14,8 @@ def test_init_and_missing_field(tmp_path: Path) -> None:
     dest = tmp_path / "vault"
     copied = init_vault(dest)
     assert "MEMORY.md" in copied
+    assert "adapters/paste.txt" in copied
+    assert "adapters/paste.en.txt" in copied
     result = check_vault(dest)
     assert result.ok
 

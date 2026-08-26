@@ -26,6 +26,8 @@ aimem doctor ./look
 | `aimem collect scan` | list new or appended allowlisted files |
 | `aimem collect read` | normalize one file to user/assistant text, credentials redacted |
 | `aimem collect commit` | advance the collector checkpoint. not a git commit |
+| `aimem collect abandon` | drop a pending scan without moving the checkpoint |
+| `aimem collect status` | show inbox checkpoint and pending scans |
 | `aimem collect normalize` | parse one jsonl file without touching inbox state |
 
 `collect` never edits the vault.
