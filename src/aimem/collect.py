@@ -74,8 +74,13 @@ def default_config() -> dict[str, Any]:
 def write_json_atomic(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_name(f".tmp-{uuid.uuid4().hex}")
-    tmp.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    tmp.replace(path)
+    try:
+        tmp.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        tmp.replace(path)
+    except Exception:
+        if tmp.exists():
+            tmp.unlink(missing_ok=True)
+        raise
 
 
 def _now() -> datetime:
@@ -104,8 +109,14 @@ def load_config(inbox: Path, explicit: Path | None = None, *, create: bool = Fal
         if not create:
             raise FileNotFoundError(f"configuration file does not exist: {path}")
         write_json_atomic(path, default_config())
-    config = json.loads(path.read_text(encoding="utf-8"))
-    if config.get("version") != 1 or not config.get("sources"):
+    try:
+        config = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"invalid JSON in configuration: {path}") from exc
+    if not isinstance(config, dict) or config.get("version") != 1:
+        raise ValueError(f"unsupported or invalid configuration: {path}")
+    sources = config.get("sources")
+    if not isinstance(sources, list) or not sources:
         raise ValueError(f"unsupported or invalid configuration: {path}")
     return config
 
@@ -118,7 +129,13 @@ def load_state(inbox: Path) -> dict[str, Any]:
     path = state_path(inbox)
     if not path.exists():
         raise FileNotFoundError(f"state file does not exist. run collect init first: {path}")
-    return json.loads(path.read_text(encoding="utf-8"))
+    try:
+        state = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"invalid JSON in state file: {path}") from exc
+    if not isinstance(state, dict):
+        raise ValueError(f"invalid state file: {path}")
+    return state
 
 
 def save_state(inbox: Path, state: dict[str, Any]) -> None:
@@ -164,24 +181,31 @@ def list_source_files(config: dict[str, Any]) -> list[dict[str, Any]]:
             root_path = Path(root)
             if not root_path.exists():
                 continue
-            for file in root_path.rglob(source.get("include") or "*.jsonl"):
-                if not file.is_file() or not is_allowed_file(file, source):
+            try:
+                candidates = list(root_path.rglob(source.get("include") or "*.jsonl"))
+            except OSError:
+                continue
+            for file in candidates:
+                try:
+                    if not file.is_file() or not is_allowed_file(file, source):
+                        continue
+                    if source["id"] == "codex" and _skip_codex_subagent(file):
+                        continue
+                    key = str(file.resolve()).lower()
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    results.append(
+                        {
+                            "source": source["id"],
+                            "path": str(file.resolve()),
+                            "length": file.stat().st_size,
+                            "last_write_utc_ticks": _file_ticks(file),
+                            "last_write_utc": _file_mtime_iso(file),
+                        }
+                    )
+                except OSError:
                     continue
-                if source["id"] == "codex" and _skip_codex_subagent(file):
-                    continue
-                key = str(file.resolve()).lower()
-                if key in seen:
-                    continue
-                seen.add(key)
-                results.append(
-                    {
-                        "source": source["id"],
-                        "path": str(file.resolve()),
-                        "length": file.stat().st_size,
-                        "last_write_utc_ticks": _file_ticks(file),
-                        "last_write_utc": _file_mtime_iso(file),
-                    }
-                )
     return sorted(results, key=lambda item: item["path"])
 
 
@@ -342,6 +366,10 @@ def _state_map(state: dict[str, Any]) -> dict[str, dict[str, Any]]:
 
 
 def scan(inbox: Path, *, max_items: int = 40, quiet_minutes: int = 15, config_file: Path | None = None) -> dict[str, Any]:
+    if max_items < 1:
+        raise ValueError("max_items must be >= 1")
+    if quiet_minutes < 0:
+        raise ValueError("quiet_minutes must be >= 0")
     config = load_config(inbox, config_file)
     state = load_state(inbox)
     previous = _state_map(state)
@@ -453,10 +481,25 @@ def _load_scan(inbox: Path, scan_id: str) -> tuple[Path, dict[str, Any]]:
     path = inbox / "scans" / f"{scan_id}.json"
     if not path.exists():
         raise FileNotFoundError(f"scan does not exist: {path}")
-    return path, json.loads(path.read_text(encoding="utf-8"))
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"invalid JSON in scan file: {path}") from exc
+    if not isinstance(payload, dict):
+        raise ValueError(f"invalid scan file: {path}")
+    return path, payload
 
 
-def read_item(inbox: Path, scan_id: str, item_id: int, *, max_output_chars: int = 120000, config_file: Path | None = None) -> str:
+def read_item(
+    inbox: Path,
+    scan_id: str,
+    item_id: int,
+    *,
+    max_output_chars: int = 120000,
+    config_file: Path | None = None,
+) -> str:
+    if max_output_chars < 1:
+        raise ValueError("max_output_chars must be >= 1")
     scan_file, payload = _load_scan(inbox, scan_id)
     if payload.get("status") != "pending":
         raise ValueError("only pending scans can be read")
@@ -554,15 +597,20 @@ def status(inbox: Path, config_file: Path | None = None) -> dict[str, Any]:
 
 
 def normalize_file(path: Path, source: str, *, max_output_chars: int = 120000) -> str:
+    if max_output_chars < 1:
+        raise ValueError("max_output_chars must be >= 1")
     if not path.is_file():
         raise FileNotFoundError(f"file does not exist: {path}")
-    text = path.read_text(encoding="utf-8")
+    try:
+        text = path.read_text(encoding="utf-8")
+    except UnicodeDecodeError as exc:
+        raise ValueError(f"file is not valid utf-8: {path}") from exc
     return format_messages(jsonl_to_messages(text, source), source, max_output_chars)
 
 
 def source_presence(config: dict[str, Any] | None = None) -> list[dict[str, Any]]:
     config = config or default_config()
-    rows = []
+    rows: list[dict[str, Any]] = []
     for source in config.get("sources", []):
         existing = [root for root in source.get("roots", []) if Path(root).exists()]
         rows.append(
