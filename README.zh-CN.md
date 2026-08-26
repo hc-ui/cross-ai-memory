@@ -103,9 +103,21 @@ aimem init --demo ./look
 
 只有你想落笔记时再说「记住」。
 
-- 命令和采集器：[docs/cli.md](docs/cli.md)
+- 说明目录：[docs/README.zh-CN.md](docs/README.zh-CN.md)
+- 命令和采集器：[docs/cli.zh-CN.md](docs/cli.zh-CN.md)
 - 不该漂的规则：[SPEC.md](SPEC.md)
 - 常见问题：[docs/faq.zh-CN.md](docs/faq.zh-CN.md)
+
+## 仓库里有什么
+
+| 打开 | 是什么 |
+| --- | --- |
+| [site/](site/) | 公开页。中文 `index.html`，英文 `en.html` |
+| [examples/lin-ke/](examples/lin-ke/) | 林可标本。从 [MEMORY.md](examples/lin-ke/MEMORY.md) 进 |
+| [starter/](starter/) | `aimem init` 复制的空壳 |
+| [adapters/](adapters/) | 短规则和各家适配 |
+| [docs/](docs/README.zh-CN.md) | 今晚、一周、命令、问答 |
+| [SPEC.md](SPEC.md) | 门闩。实现可以换，这页不该漂 |
 
 ## 这不是什么
 

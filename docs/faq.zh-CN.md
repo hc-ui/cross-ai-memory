@@ -1,5 +1,9 @@
 # 常见问题
 
+## 从哪一页读起？
+
+给别人看的页：[公开页](https://hc-ui.github.io/cross-ai-memory/)。仓库里的说明目录：[README.zh-CN.md](README.zh-CN.md)。标本从 [examples/lin-ke/MEMORY.md](../examples/lin-ke/MEMORY.md) 进。
+
 ## 一定要装命令行吗？
 
 不用。方法就是三句话加一个 Markdown 文件夹。命令行只负责复制空壳、检查笔记、读本机会话。你只抄规则也可以。
@@ -23,6 +27,10 @@
 ## 每周任务会自己写笔记吗？
 
 不会。它只打清单。`aimem collect commit` 只推进本地检查点，不是 git commit，也不是批准。
+
+## 存成 MEMORY.md.txt 了怎么办？
+
+资源管理器勾选「文件扩展名」，把后面的 `.txt` 删掉。记事本另存为时，编码选 UTF-8，文件名写成 `MEMORY.md`。不要用 Word。
 
 ## 要把自己的真记忆库公开吗？
 

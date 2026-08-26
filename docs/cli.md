@@ -1,5 +1,7 @@
 # CLI reference
 
+[简体中文](cli.zh-CN.md)
+
 This page is for people who already understand the idea and want the commands. If you just landed, start at the [README](../README.md).
 
 Python 3.10+, zero extra packages.

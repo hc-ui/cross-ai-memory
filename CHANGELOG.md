@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.7 - 2026-08-26
+
+- Add a docs map and a Chinese CLI page, so the repo has one reading order.
+- Drop the duplicate pictures under `site/assets/`. Pages copies from `assets/` only.
+
 ## 0.3.6 - 2026-08-26
 
 - The public page now shows the specimen tree, the leafbox reversal, the permission ledger, the write gates, and a comparison with auto-memory.

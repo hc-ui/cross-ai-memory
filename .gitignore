@@ -10,4 +10,5 @@ build/
 .DS_Store
 Thumbs.db
 .aimem-inbox/
+_preview/
 *.bundle

@@ -25,6 +25,7 @@ jobs:
       - name: Assemble site
         run: |
           mkdir -p public/assets
+          # HTML lives in site/. Pictures live in assets/ at the repo root — do not keep a second copy under site/assets/.
           cp site/index.html site/en.html site/MEMORY.md site/MEMORY.en.md public/
           cp assets/idea.svg assets/idea.zh.svg assets/week.svg assets/week.zh.svg \
              assets/chat.svg assets/chat.zh.svg assets/check.svg assets/favicon.svg assets/og.png public/assets/

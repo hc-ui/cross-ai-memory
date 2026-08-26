@@ -104,9 +104,21 @@ Point `<VAULT>` in `adapters/cursor.md` (or Claude / Codex) at that folder. Ask 
 
 Say `记住` only when you want a note created.
 
+- Docs map: [docs/README.md](docs/README.md)
 - Commands and collector: [docs/cli.md](docs/cli.md)
 - Rules that should not drift: [SPEC.md](SPEC.md)
 - Questions: [docs/faq.md](docs/faq.md)
+
+## What’s in the repo
+
+| Open | What it is |
+| --- | --- |
+| [site/](site/) | Public page. Chinese `index.html`, English `en.html` |
+| [examples/lin-ke/](examples/lin-ke/) | Specimen. Start at [MEMORY.md](examples/lin-ke/MEMORY.md) |
+| [starter/](starter/) | Empty shell copied by `aimem init` |
+| [adapters/](adapters/) | Short paste rule and per-product adapters |
+| [docs/](docs/README.md) | Tonight, the week, commands, FAQ |
+| [SPEC.md](SPEC.md) | Gates. Implementations may change; this page should not |
 
 ## What this is not
 
